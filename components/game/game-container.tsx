@@ -88,7 +88,17 @@ export default function GameContainer() {
   )
 }
 
-function StatusIndicator({ label, value }: { label: string; value: number }) {
+// Definir un tipo para las claves permitidas
+type StatusLabel = 'Energía' | 'Ánimo' | 'Tiempo' | 'Bugs';
+
+const statusIcons: Record<StatusLabel, string> = {
+  "Energía": "/icons/energy.svg",
+  "Ánimo": "/icons/mood.svg",
+  "Tiempo": "/icons/time.svg",
+  "Bugs": "/icons/bugs.svg"
+}
+
+function StatusIndicator({ label, value }: { label: StatusLabel; value: number }) {
   // Determinar el color basado en el valor
   let valueColor = "text-primary"
   if (value < 30) valueColor = "text-destructive"
@@ -101,9 +111,18 @@ function StatusIndicator({ label, value }: { label: string; value: number }) {
     else valueColor = "text-primary"
   }
 
+  const iconPath = statusIcons[label]
+
   return (
-    <div className="text-xs">
-      <span className="text-muted-foreground">{label}: </span>
+    <div className="flex items-center gap-1 text-xs">
+      {iconPath && (
+        <img
+          src={iconPath}
+          alt={label}
+          className="w-4 h-4"
+        />
+      )}
+      {/* <span className="text-muted-foreground">{label}: </span> */}
       <span className={valueColor}>{value}</span>
     </div>
   )
