@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 142 70% 50%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 142 70% 50%;
+
+    --primary: 142 70% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 142 30% 20%;
+    --secondary-foreground: 142 70% 50%;
+
+    --muted: 142 10% 20%;
+    --muted-foreground: 142 30% 40%;
+
+    --accent: 142 30% 20%;
+    --accent-foreground: 142 70% 50%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 142 30% 20%;
+    --input: 142 30% 20%;
+    --ring: 142 70% 50%;
+
+    --radius: 0.5rem;
+
+    /* Colores filosóficos */
+    --philosophical: 280 70% 60%;
+    --semiotic: 200 70% 60%;
+    --nietzsche: 340 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  .terminal-text {
+    @apply font-mono text-primary;
+  }
+
+  .terminal-container {
+    @apply bg-card border border-border rounded-md p-4 shadow-md shadow-primary/20;
+    background-image: radial-gradient(circle at 50% 50%, rgba(20, 70, 40, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  }
+
+  .terminal-cursor {
+    @apply animate-pulse;
+  }
+
+  /* Estilos para efectos existenciales */
+  .existential-quote {
+    @apply italic text-sm text-muted-foreground my-2 border-l-2 border-primary pl-2;
+  }
+
+  /* Estilos para citas filosóficas */
+  .philosophical-quote {
+    @apply italic text-sm my-2 border-l-2 pl-2;
+    color: hsl(var(--philosophical));
+    border-color: hsl(var(--philosophical));
+  }
+
+  /* Estilos para conceptos semióticos */
+  .semiotic-term {
+    @apply font-bold underline decoration-dotted underline-offset-2;
+    color: hsl(var(--semiotic));
+    cursor: help;
+  }
+
+  /* Estilos para conceptos nietzscheanos */
+  .nietzsche-term {
+    @apply font-bold italic;
+    color: hsl(var(--nietzsche));
+  }
+
+  .code-fragment {
+    @apply font-mono text-xs opacity-70;
+    letter-spacing: -0.5px;
+  }
+
+  /* Animación para el botón START */
+  .pulse-animation {
+    animation: pulse 2s infinite;
+    position: relative;
+  }
+
+  .pulse-animation::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius);
+    box-shadow: 0 0 0 0 rgba(20, 215, 100, 0.7);
+    animation: pulse-shadow 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse-shadow {
+    0% {
+      box-shadow: 0 0 0 0 rgba(20, 215, 100, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(20, 215, 100, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(20, 215, 100, 0);
+    }
+  }
+}
