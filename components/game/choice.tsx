@@ -15,7 +15,7 @@ const EffectItem = ({
   value: number
 }) => (
   <div className="flex items-center">
-    <Image src={icon} alt={alt} width={20} height={20} className="w-4 h-4" />
+    <Image src={icon} alt={alt} width={20} height={20} className="w-5 h-5" />
     <span className={value > 0 ? "text-lime-500" : "text-rose-500"}>{value}</span>
   </div>
 )

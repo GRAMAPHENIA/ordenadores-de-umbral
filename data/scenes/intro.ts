@@ -1,19 +1,19 @@
-import type { Scene } from "@/lib/types"
-import { scene1, scene2, scene3 } from "./scenes"
-import { philosophyScene } from "./philosophical"
+import type { Scene } from "@/lib/types";
+import { scene1, scene2, scene3 } from "./scenes";
+import { philosophyScene } from "./philosophical";
 
 export const introScene: Scene = {
   id: "intro",
   text: `> Terminal iniciada
-> Sistema operativo: RealityOS v1.0.0
+> Sistema operativo: GraphOS v1.0.0
 > Usuario: Programador
 
-Estuviste laburando en tu código durante horas cuando algo raro pasa. 
+Estás trabajando en tu código durante horas cuando algo raro pasa. 
 Tu terminal parpadea con un mensaje inusual:
 
-"Las funciones que escribís no solo modifican datos, modifican la realidad."
+"Las funciones que escribís modifican la realidad."
 
-Al principio pensás que es una joda, algún easter egg en tu IDE. 
+Al principio pensás que es una broma, algún easter egg en tu IDE. 
 Pero entonces notás que hay nuevas funciones disponibles en tu entorno global.
 
 ¿Qué vas a hacer con este poder que desdibuja la línea entre creador y creación?`,
@@ -40,7 +40,8 @@ Pero entonces notás que hay nuevas funciones disponibles en tu entorno global.
     },
     {
       functionName: "debugSelf",
-      description: "Intentá depurar tu propia mente para entender qué está pasando",
+      description:
+        "Intentá depurar tu propia mente para entender qué está pasando",
       effects: {
         energy: -5,
         mood: 10,
@@ -59,4 +60,4 @@ Pero entonces notás que hay nuevas funciones disponibles en tu entorno global.
       nextScene: philosophyScene,
     },
   ],
-}
+};
