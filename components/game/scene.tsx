@@ -2,6 +2,7 @@
 
 import { useGameStore } from "@/lib/store"
 import Choice from "@/components/game/choice"
+import CodeFragment from "./text/code-fragment"
 
 export default function Scene() {
   const { currentScene } = useGameStore()
@@ -13,9 +14,7 @@ export default function Scene() {
     // Destacar mensajes de terminal
     if (line.startsWith(">")) {
       return (
-        <div key={index} className="code-fragment text-muted-foreground">
-          {line}
-        </div>
+        <CodeFragment key={index} text={line} />
       )
     }
 
