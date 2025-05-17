@@ -4,6 +4,7 @@ import { useGameStore } from "@/lib/store"
 import Choice from "@/components/game/choice"
 import CodeFragment from "./text/code-fragment"
 import Quote from "./text/quote"
+import RegularText from "./text/regular-text"
 
 export default function Scene() {
   const { currentScene } = useGameStore()
@@ -40,9 +41,7 @@ export default function Scene() {
 
     // Texto normal
     return (
-      <div key={index} className="my-1">
-        {line}
-      </div>
+      <RegularText key={index} text={line} />
     )
   })
 
