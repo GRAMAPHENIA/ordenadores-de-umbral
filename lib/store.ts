@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import { create } from "zustand"
-import type { Scene, Choice } from "@/lib/types"
+import { create } from "zustand";
+import type { Scene, Choice } from "@/lib/types";
 
 interface GameState {
   // Estado del jugador
-  energy: number
-  mood: number
-  time: number
-  bugs: number
+  energy: number;
+  mood: number;
+  time: number;
+  bugs: number;
 
   // Estado del juego
-  currentScene: Scene | null
-  sceneHistory: Scene[]
-  initialized: boolean
+  currentScene: Scene | null;
+  sceneHistory: Scene[];
+  initialized: boolean;
 
   // Acciones
-  loadScene: (scene: Scene) => void
-  executeChoice: (choice: Choice) => void
-  updatePlayerState: (updates: Partial<PlayerState>) => void
-  resetGame: () => void
+  loadScene: (scene: Scene) => void;
+  executeChoice: (choice: Choice) => void;
+  updatePlayerState: (updates: Partial<PlayerState>) => void;
+  resetGame: () => void;
 }
 
 interface PlayerState {
-  energy: number
-  mood: number
-  time: number
-  bugs: number
+  energy: number;
+  mood: number;
+  time: number;
+  bugs: number;
 }
 
 export const useGameStore = create<GameState>((set, get) => ({
@@ -47,13 +47,13 @@ export const useGameStore = create<GameState>((set, get) => ({
       currentScene: scene,
       sceneHistory: [...get().sceneHistory, scene],
       initialized: true,
-    })
+    });
   },
 
   executeChoice: (choice: Choice) => {
     // Aplicar efectos al estado del jugador
     if (choice.effects) {
-      get().updatePlayerState(choice.effects)
+      get().updatePlayerState(choice.effects);
     }
 
     // Cargar la siguiente escena si existe
@@ -93,19 +93,25 @@ La terminal parpadea, esperando tu próximo comando...`,
               ],
             },
           },
-        ]
+        ];
       }
-      get().loadScene(choice.nextScene)
+      get().loadScene(choice.nextScene);
     }
   },
 
   updatePlayerState: (updates: Partial<PlayerState>) => {
     set((state) => ({
-      energy: clampValue(updates.energy !== undefined ? updates.energy + state.energy : state.energy),
-      mood: clampValue(updates.mood !== undefined ? updates.mood + state.mood : state.mood),
+      energy: clampValue(
+        updates.energy !== undefined
+          ? updates.energy + state.energy
+          : state.energy
+      ),
+      mood: clampValue(
+        updates.mood !== undefined ? updates.mood + state.mood : state.mood
+      ),
       time: updates.time !== undefined ? updates.time + state.time : state.time,
       bugs: updates.bugs !== undefined ? updates.bugs + state.bugs : state.bugs,
-    }))
+    }));
   },
 
   resetGame: () => {
@@ -117,11 +123,11 @@ La terminal parpadea, esperando tu próximo comando...`,
       currentScene: null,
       sceneHistory: [],
       initialized: false,
-    })
+    });
   },
-}))
+}));
 
 // Función auxiliar para mantener los valores entre 0 y 100
 function clampValue(value: number): number {
-  return Math.max(0, Math.min(100, value))
+  return Math.max(0, Math.min(100, value));
 }

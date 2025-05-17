@@ -3,34 +3,53 @@
 import { Button } from "@/components/ui/button"
 import { useGameStore } from "@/lib/store"
 import type { Choice as ChoiceType } from "@/lib/types"
+import Image from "next/image"
+
+const EffectItem = ({
+  icon,
+  alt,
+  value,
+}: {
+  icon: string
+  alt: string
+  value: number
+}) => (
+  <div className="flex items-center">
+    <Image src={icon} alt={alt} width={20} height={20} className="w-4 h-4" />
+    <span className={value > 0 ? "text-teal-400" : "text-rose-500"}>{value}</span>
+  </div>
+)
 
 export default function Choice({ choice }: { choice: ChoiceType }) {
   const { executeChoice } = useGameStore()
 
-  // Crear una descripción de los efectos si existen
-  let effectsText = ""
-  if (choice.effects) {
-    const effects = []
-    if (choice.effects.energy) effects.push(`energía: ${choice.effects.energy > 0 ? "+" : ""}${choice.effects.energy}`)
-    if (choice.effects.mood) effects.push(`ánimo: ${choice.effects.mood > 0 ? "+" : ""}${choice.effects.mood}`)
-    if (choice.effects.time) effects.push(`tiempo: ${choice.effects.time > 0 ? "+" : ""}${choice.effects.time}`)
-    if (choice.effects.bugs) effects.push(`bugs: ${choice.effects.bugs > 0 ? "+" : ""}${choice.effects.bugs}`)
-
-    if (effects.length > 0) {
-      effectsText = `// ${effects.join(", ")}`
-    }
-  }
+  const effects = choice.effects
+    ? [
+        choice.effects.energy && (
+          <EffectItem key="energy" icon="/icons/energy.svg" alt="Energía" value={choice.effects.energy} />
+        ),
+        choice.effects.mood && (
+          <EffectItem key="mood" icon="/icons/mood.svg" alt="Ánimo" value={choice.effects.mood} />
+        ),
+        choice.effects.time && (
+          <EffectItem key="time" icon="/icons/time.svg" alt="Tiempo" value={choice.effects.time} />
+        ),
+        choice.effects.bugs && (
+          <EffectItem key="bugs" icon="/icons/bugs.svg" alt="Bugs" value={choice.effects.bugs} />
+        ),
+      ].filter(Boolean)
+    : []
 
   return (
     <Button
       variant="outline"
-      className="w-full justify-start font-mono text-left"
       onClick={() => executeChoice(choice)}
+      className="w-full flex flex-col md:flex-row md:justify-between items-start text-left"
     >
-      <span className="flex justify-between w-full">
-        <span>{choice.functionName}()</span>
-        {effectsText && <span className="text-xs text-muted-foreground">{effectsText}</span>}
-      </span>
+      <div className="flex items-start md:items-center w-full">
+        <span className="flex-1">{choice.functionName}()</span>
+        <div className="flex gap-4 text-xs md:mt-0 md:ml-4">{effects}</div>
+      </div>
     </Button>
   )
 }
