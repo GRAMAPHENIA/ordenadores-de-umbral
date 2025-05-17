@@ -3,6 +3,7 @@
 import { useGameStore } from "@/lib/store"
 import Choice from "@/components/game/choice"
 import CodeFragment from "./text/code-fragment"
+import Quote from "./text/quote"
 
 export default function Scene() {
   const { currentScene } = useGameStore()
@@ -21,21 +22,17 @@ export default function Scene() {
     // Destacar citas entre comillas (ahora con estilo filosófico)
     if (line.includes('"') && line.split('"').length > 2) {
       const parts = line.split('"')
+      const quoteType = line.includes("Nietzsche") ||
+        line.includes("verdad") ||
+        line.includes("interpretaci") ||
+        line.includes("poder")
+        ? 'philosophical'
+        : 'existential'
+
       return (
         <div key={index} className="my-2">
           {parts[0]}
-          <div
-            className={
-              line.includes("Nietzsche") ||
-              line.includes("verdad") ||
-              line.includes("interpretaci") ||
-              line.includes("poder")
-                ? "philosophical-quote"
-                : "existential-quote"
-            }
-          >
-            "{parts[1]}"
-          </div>
+          <Quote text={parts[1]} type={quoteType} />
           {parts[2]}
         </div>
       )
