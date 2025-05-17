@@ -22,7 +22,7 @@ export default function MainMenu({ onStart }: MainMenuProps) {
             <Terminal className="h-12 w-12 text-primary" />
           </div>
           <h1 className="text-4xl font-bold terminal-text mb-2">Ordenadores de Umbral</h1>
-          <p className="text-muted-foreground text-sm">Un juego narrativo donde el código modifica la realidad</p>
+          <p className="text-muted-foreground text-sm">Narrativas v 0.1</p>
         </div>
 
         <Separator className="mb-8" />
@@ -36,7 +36,7 @@ export default function MainMenu({ onStart }: MainMenuProps) {
             <div className="mt-8 space-y-2">
               <Button onClick={() => setShowAbout(true)} variant="ghost" className="w-48 text-sm">
                 <Info className="mr-2 h-4 w-4" />
-                Sobre el juego
+                Documentos
               </Button>
 
               <Button onClick={() => setShowCredits(true)} variant="ghost" className="w-48 text-sm">
@@ -93,7 +93,7 @@ function AboutScreen({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex-1 flex flex-col">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold terminal-text">Sobre el juego</h2>
+        <h2 className="text-xl font-bold terminal-text">Documentos</h2>
         <Button variant="ghost" size="sm" onClick={onBack}>
           <X className="h-4 w-4" />
         </Button>

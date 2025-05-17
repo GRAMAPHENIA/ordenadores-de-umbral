@@ -2,24 +2,36 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import Scene from "@/components/game/scene"
-import MainMenu from "@/components/game/main-menu"
+import { default as Scene } from "@/components/game/scene"
+import { default as MainMenu } from "@/components/game/main-menu"
 import { useGameStore } from "@/lib/store"
 import { introScene } from "@/data/scenes/intro"
+import GameHeader from "./header/game-header"
 
+/**
+ * Contenedor principal del juego que maneja la lógica global y la navegación
+ * entre el menú principal y la escena del juego.
+ */
 export default function GameContainer() {
-  const { currentScene, loadScene, initialized, energy, mood, time, bugs, resetGame } = useGameStore()
+  const { currentScene, loadScene, resetGame } = useGameStore()
   const [showMenu, setShowMenu] = useState(true)
 
+  /**
+   * Resetear el juego cuando se muestra el menú principal
+   * - Resetea todos los estados del juego
+   * - Limpia la escena actual
+   */
   useEffect(() => {
-    // Resetear el juego cuando volvemos al menú principal
     if (showMenu) {
       resetGame()
     }
   }, [showMenu, resetGame])
 
-  // Añadir event listener para la tecla Escape
+  /**
+   * Manejar el evento de tecla Escape
+   * - Permite volver al menú principal desde cualquier escena
+   * - Solo funciona cuando no se está en el menú principal
+   */
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape" && !showMenu) {
@@ -27,30 +39,24 @@ export default function GameContainer() {
       }
     }
 
-    // Añadir el event listener
     window.addEventListener("keydown", handleKeyDown)
-
-    // Limpiar el event listener cuando el componente se desmonte
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown)
-    }
+    return () => window.removeEventListener("keydown", handleKeyDown)
   }, [showMenu])
 
+  /**
+   * Iniciar el juego desde el menú principal
+   * - Carga la escena de introducción
+   * - Oculta el menú principal
+   */
   const startGame = () => {
     loadScene(introScene)
     setShowMenu(false)
   }
 
-  const returnToMenu = () => {
-    setShowMenu(true)
-  }
-
-  // Mostrar el menú principal
   if (showMenu) {
     return <MainMenu onStart={startGame} />
   }
 
-  // Mostrar pantalla de carga
   if (!currentScene) {
     return (
       <Card className="w-full max-w-3xl terminal-container">
@@ -61,69 +67,12 @@ export default function GameContainer() {
     )
   }
 
-  // Mostrar el juego
   return (
     <Card className="w-full max-w-3xl terminal-container">
       <CardContent className="p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-xl font-bold terminal-text">Ordenadores de Umbral</h1>
-          <div className="flex space-x-4 items-center">
-            <StatusIndicator label="Energía" value={energy} />
-            <StatusIndicator label="Ánimo" value={mood} />
-            <StatusIndicator label="Tiempo" value={time} />
-            <StatusIndicator label="Bugs" value={bugs} />
-            <button
-              onClick={returnToMenu}
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
-              title="Volver al menú principal"
-            >
-              [ESC]
-            </button>
-          </div>
-        </div>
-        <Separator className="mb-4" />
+        <GameHeader />
         <Scene />
       </CardContent>
     </Card>
-  )
-}
-
-// Definir un tipo para las claves permitidas
-type StatusLabel = 'Energía' | 'Ánimo' | 'Tiempo' | 'Bugs';
-
-const statusIcons: Record<StatusLabel, string> = {
-  "Energía": "/icons/energy.svg",
-  "Ánimo": "/icons/mood.svg",
-  "Tiempo": "/icons/time.svg",
-  "Bugs": "/icons/bugs.svg"
-}
-
-function StatusIndicator({ label, value }: { label: StatusLabel; value: number }) {
-  // Determinar el color basado en el valor
-  let valueColor = "text-primary"
-  if (value < 30) valueColor = "text-destructive"
-  else if (value < 60) valueColor = "text-yellow-500"
-
-  // Para bugs, invertir la lógica de colores
-  if (label === "Bugs") {
-    if (value > 10) valueColor = "text-destructive"
-    else if (value > 5) valueColor = "text-yellow-500"
-    else valueColor = "text-primary"
-  }
-
-  const iconPath = statusIcons[label]
-
-  return (
-    <div className="flex items-center gap-1 text-xs">
-      {iconPath && (
-        <img
-          src={iconPath}
-          alt={label}
-          className="w-4 h-4"
-        />
-      )}
-      {/* <span className="text-muted-foreground">{label}: </span> */}
-      <span className={valueColor}>{value}</span>
-    </div>
   )
 }

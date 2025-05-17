@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-mono bg-black text-green-500`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-mono bg-black text-teal-500`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           {children}
         </ThemeProvider>
