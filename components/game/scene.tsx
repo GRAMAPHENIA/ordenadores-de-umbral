@@ -43,7 +43,7 @@ export default function Scene() {
         const quoteType = isPhilosophicalQuote(line) ? 'philosophical' : 'existential'
 
         return (
-          <div key={index} className="my-2">
+          <div key={index} className="my-1">
             {parts[0]}
             <Quote text={parts[1]} type={quoteType} />
             {parts[2]}
