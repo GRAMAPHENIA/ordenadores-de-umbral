@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import useMenuState from "./menu/useMenuState"
-import MenuTitle from "./menu/MenuTitle"
-import StartButtons from "./menu/StartButtons"
-import CreditsScreen from "./menu/CreditsScreen"
-import AboutScreen from "./menu/AboutScreen"
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import useMenuState from "./menu/useMenuState";
+import MenuTitle from "./menu/MenuTitle";
+import StartButtons from "./menu/StartButtons";
+import CreditsScreen from "./menu/CreditsScreen";
+import AboutScreen from "./menu/AboutScreen";
 
 interface MainMenuProps {
-  onStart: () => void
+  onStart: () => void;
 }
 
 export default function MainMenu({ onStart }: MainMenuProps) {
-  const { showCredits, showAbout, setShowCredits, setShowAbout } = useMenuState()
+  const { showCredits, showAbout, setShowCredits, setShowAbout } =
+    useMenuState();
 
   return (
     <Card className="w-full max-w-3xl terminal-container min-h-[400px] flex flex-col">
@@ -35,9 +36,12 @@ export default function MainMenu({ onStart }: MainMenuProps) {
         )}
 
         <div className="text-center text-xs text-muted-foreground mt-8">
-          <p>Durante el juego, presioná la tecla [ESC] para volver al menú principal</p>
+          <p>
+            Durante el juego, presioná la tecla [ESC] para volver al menú
+            principal
+          </p>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
