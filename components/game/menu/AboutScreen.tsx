@@ -11,7 +11,7 @@ export default function AboutScreen({ onBack }: AboutScreenProps) {
   return (
     <div className="flex-1 flex flex-col">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold terminal-text">Documentos</h2>
+        <h2 className="text-xl font-black terminal-text">Documentos</h2>
         <Button variant="ghost" size="sm" onClick={onBack}>
           <X className="h-4 w-4" />
         </Button>
@@ -19,7 +19,7 @@ export default function AboutScreen({ onBack }: AboutScreenProps) {
 
       <div className="space-y-4 text-sm">
         <p>
-          En <span className="text-primary font-bold">Ordenadores de Umbral</span>, sos un programador que descubre que
+          En <span className="text-primary font-black">Ordenadores de Umbral</span>, sos un programador que descubre que
           puede invocar funciones JavaScript que afectan su vida cotidiana.
         </p>
 
@@ -29,7 +29,7 @@ export default function AboutScreen({ onBack }: AboutScreenProps) {
         </p>
 
         <div className="mt-4">
-          <h3 className="text-primary font-bold mb-1">Cómo jugar</h3>
+          <h3 className="text-primary font-black mb-1">Cómo jugar</h3>
           <p className="text-muted-foreground">
             Seleccioná funciones para ejecutarlas y avanzar en la historia. Cada función afectará tus estadísticas:
             Energía, Ánimo, Tiempo y Bugs.
