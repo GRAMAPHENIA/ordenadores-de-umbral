@@ -1,4 +1,5 @@
 # Ordenadores de Umbral
+### (narrativa construida por módulos intercambiables)
 
 Narrativas v 0.1
 
