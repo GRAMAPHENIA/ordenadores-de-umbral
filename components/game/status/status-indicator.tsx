@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import { Tooltip } from "@/components/ui/tooltip"
 
 /**
  * Tipos para las etiquetas de estado permitidas en el juego
@@ -47,15 +47,25 @@ export default function StatusIndicator({
   const iconPath = statusIcons[label]
 
   return (
-    <div className="flex flex-col items-center gap-1 text-xs">
-      {iconPath && (
-        <img
-          src={iconPath}
-          alt={label}
-          className="w-6 h-6"
-        />
-      )}
-      <span className={valueColor}>{value}</span>
-    </div>
+    <Tooltip 
+      content={
+        <div className="flex items-center gap-2">
+          <span>{label}:</span>
+          <span className={`font-medium ${valueColor}`}>{value}</span>
+        </div>
+      }
+    >
+      <div className="group flex flex-col items-center gap-1 text-xs cursor-help">
+        {iconPath && (
+          <div className="w-6 h-6 flex items-center justify-center">
+            <img
+              src={iconPath}
+              alt={label}
+              className="w-6 h-6 transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(74,222,128,0.75)]"
+            />
+          </div>
+        )}
+      </div>
+    </Tooltip>
   )
 }

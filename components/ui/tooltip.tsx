@@ -1,30 +1,70 @@
 "use client"
 
-import * as React from "react"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import { useState, useRef, useEffect, ReactNode } from "react"
 
-import { cn } from "@/lib/utils"
+interface TooltipProps {
+  children: ReactNode
+  content: ReactNode
+  className?: string
+}
 
-const TooltipProvider = TooltipPrimitive.Provider
+export function Tooltip({ children, content, className = "" }: TooltipProps) {
+  const [isVisible, setIsVisible] = useState(false)
+  const [position, setPosition] = useState({ top: 0, left: 0 })
+  const tooltipRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLDivElement>(null)
 
-const Tooltip = TooltipPrimitive.Root
+  useEffect(() => {
+    if (isVisible && triggerRef.current && tooltipRef.current) {
+      const triggerRect = triggerRef.current.getBoundingClientRect()
+      const tooltipRect = tooltipRef.current.getBoundingClientRect()
+      
+      // Calcular posición vertical
+      const top = triggerRect.bottom + window.scrollY + 5
+      
+      // Calcular posición horizontal asegurando que no se salga de la pantalla
+      let left = triggerRect.left + (triggerRect.width / 2) + window.scrollX
+      
+      // Ajustar si el tooltip se sale por la derecha
+      const rightEdge = left + (tooltipRect.width / 2)
+      if (rightEdge > window.innerWidth + window.scrollX) {
+        left = window.innerWidth + window.scrollX - tooltipRect.width / 2 - 10
+      }
+      
+      // Ajustar si el tooltip se sale por la izquierda
+      const leftEdge = left - (tooltipRect.width / 2)
+      if (leftEdge < window.scrollX) {
+        left = tooltipRect.width / 2 + window.scrollX + 10
+      }
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+      setPosition({ top, left })
+    }
+  }, [isVisible])
 
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    sideOffset={sideOffset}
-    className={cn(
-      "z-50 overflow-hidden rounded-md border bg-card px-3 py-1.5 text-sm text-card-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-      className,
-    )}
-    {...props}
-  />
-))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+  return (
+    <div className="relative inline-block">
+      <div
+        ref={triggerRef}
+        className={`inline-block ${className}`}
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+      >
+        {children}
+      </div>
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+      {isVisible && (
+        <div
+          ref={tooltipRef}
+          className="fixed z-50 px-3 py-2 text-sm text-white bg-gray-800 rounded-md shadow-lg whitespace-nowrap transform -translate-x-1/2"
+          style={{
+            top: `${position.top}px`,
+            left: `${position.left}px`,
+          }}
+        >
+          {content}
+          <div className="absolute w-3 h-3 -top-1.5 left-1/2 -translate-x-1/2 rotate-45 bg-gray-800" />
+        </div>
+      )}
+    </div>
+  )
+}

@@ -10,8 +10,8 @@ import GameContent from "@/components/game/ui/GameContent"
  * y maneja la navegación entre estados.
  */
 export default function GameContainer() {
-  const { currentScene } = useGameStore()
   const { showMenu, startGame } = useGameMenu()
+  const { currentScene } = useGameStore()
 
   if (showMenu) {
     return <MainMenu onStart={startGame} />
