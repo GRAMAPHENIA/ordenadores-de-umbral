@@ -21,7 +21,7 @@ export default function Choice({ choice }: { choice: ChoiceType }) {
     >
       <div className="flex flex-col md:flex-row items-start md:items-center w-full">
         <span className="flex-1">{choice.functionName}()</span>
-        <div className="flex gap-4 text-xs md:mt-0 md:ml-4">{effects}</div>
+        {/* <div className="flex gap-4 text-xs md:mt-0 md:ml-4">{effects}</div> */}
       </div>
     </Button>
   );
