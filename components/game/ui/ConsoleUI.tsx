@@ -129,25 +129,24 @@ export default function ConsoleUI() {
   };
 
   return (
-    <div className="fixed inset-0 bg-black text-teal-400 font-mono flex flex-col overflow-hidden">
-      {/* Efecto de escaneo */}
+    <div className="fixed inset-0 bg-gradient-to-br from-gray-900 to-black text-teal-400 font-mono flex flex-col overflow-hidden">
+      {/* Efectos de fondo */}
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogIzAwMDsiPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMDAwIiBmaWxsLW9wYWNpdHk9IjAiLz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iMiwyIi8+PC9zdmc+')] opacity-5 pointer-events-none"></div>
       
-      <div className="relative z-10 max-w-4xl mx-auto w-full h-full flex flex-col p-4">
-        {/* Encabezado de la consola */}
-        <div className="border-b border-teal-400/30 pb-2 mb-4 flex-shrink-0">
-          <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-teal-400"></div>
-            <div className="ml-4 text-sm text-teal-400/80 font-medium">terminal@umbral:~</div>
-          </div>
+      <div className="relative z-10 max-w-4xl mx-auto w-full h-full flex flex-col p-6">
+        {/* Título */}
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-500 mb-2">
+            CONSOLA UMBRAL
+          </h1>
+          <p className="text-teal-400/80 text-sm tracking-widest">MÓDULO DE SIMULACIÓN</p>
         </div>
         
         {/* Contenido de la consola */}
         <div 
           ref={consoleRef}
-          className="flex-1 overflow-y-auto mb-4 border border-teal-400/20 p-4 bg-black/30 backdrop-blur-sm rounded-md shadow-lg shadow-teal-400/10 whitespace-pre-line overflow-auto"
+          className="flex-1 overflow-y-auto mb-6 border-2 border-teal-400/20 p-6 bg-black/30 backdrop-blur-sm shadow-lg shadow-teal-400/10 whitespace-pre-line overflow-auto"
         >
           <div className="min-h-full flex flex-col">
             <div className="flex-1">
@@ -163,25 +162,29 @@ export default function ConsoleUI() {
         
         {/* Opciones de diálogo */}
         {showOptions && currentScene.options.length > 0 && (
-          <div className="mt-auto pt-4 border-t border-teal-400/20 flex-shrink-0">
-            <div className="space-y-2">
+          <div className="mt-auto pt-6 border-t-2 border-teal-400/20 flex-shrink-0">
+            <p className="text-teal-400/80 text-sm mb-4 tracking-wider">SELECCIONA UNA OPCIÓN:</p>
+            <div className="space-y-3">
               {currentScene.options.map((option, index) => (
                 <button
                   key={index}
-                  className={`w-full text-left px-4 py-3 border-2 transition-all duration-200 flex items-center ${
+                  className={`w-full text-left px-6 py-4 border-l-4 transition-all duration-200 flex items-center ${
                     selectedIndex === index
-                      ? 'border-teal-400 bg-teal-400/10 text-teal-300 shadow-lg shadow-teal-400/20'
-                      : 'border-teal-400/30 hover:border-teal-400/60 hover:bg-teal-400/5 text-teal-400/80 hover:text-teal-300'
-                  } rounded-md`}
+                      ? 'border-teal-400 bg-teal-400/10 text-teal-300 shadow-lg shadow-teal-400/10'
+                      : 'border-transparent hover:border-teal-400/30 hover:bg-teal-400/5 text-teal-400/80 hover:text-teal-300'
+                  }`}
                   onClick={() => handleOptionSelect(option)}
                 >
-                  {getIconForOption(option.text)}
-                  <span className="font-medium text-sm">{option.text}</span>
-                  {selectedIndex === index && (
-                    <span className="ml-auto flex items-center text-xs text-teal-400/70">
-                      <span className="mr-1">ENTER</span>
-                      <ChevronRight className="w-3 h-3" />
+                  <div className="flex items-center">
+                    <span className="mr-4 text-teal-400">
+                      {getIconForOption(option.text)}
                     </span>
+                    <span className="text-lg font-medium tracking-wider">
+                      {option.text}
+                    </span>
+                  </div>
+                  {selectedIndex === index && (
+                    <ChevronRight className="ml-auto w-5 h-5 text-teal-400 animate-pulse" />
                   )}
                 </button>
               ))}
@@ -190,28 +193,30 @@ export default function ConsoleUI() {
         )}
         
         {/* Instrucciones */}
-        <div className="mt-4 text-center text-xs text-teal-400/50 flex justify-between items-center">
-          {showOptions ? (
-            <div className="flex items-center justify-center w-full space-x-4">
-              <span className="flex items-center">
-                <ChevronUp className="w-3 h-3 mr-1" />
-                <ChevronDown className="w-3 h-3 mr-2" />
-                Navegar
-              </span>
-              <span className="flex items-center">
-                <span className="px-2 py-0.5 bg-teal-400/10 border border-teal-400/20 rounded mr-1">ENTER</span>
-                Seleccionar
-              </span>
-              <span className="flex items-center">
-                <span className="px-2 py-0.5 bg-teal-400/10 border border-teal-400/20 rounded mr-1">ESC</span>
-                Salir
-              </span>
-            </div>
-          ) : (
-            <p className="w-full text-center">Cargando siguiente secuencia...</p>
-          )}
+        <div className="mt-6 text-center">
+          <p className="text-xs text-teal-400/50 tracking-wider">
+            <span className="inline-block px-2 py-1 bg-teal-400/10 rounded mr-2">↑↓</span>
+            <span className="mr-4">NAVEGAR</span>
+            <span className="inline-block px-2 py-1 bg-teal-400/10 rounded mr-2">ENTER</span>
+            <span>SELECCIONAR</span>
+          </p>
+        </div>
+        
+        {/* Estado del sistema */}
+        <div className="mt-4 text-center text-teal-400/50 text-xs">
+          <p className="flex items-center justify-center gap-2">
+            <span className="flex items-center">
+              <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1 animate-pulse"></span>
+              SISTEMA EN LÍNEA
+            </span>
+            <span>•</span>
+            <span>VERSIÓN 1.0.0</span>
+          </p>
         </div>
       </div>
+      {/* Efecto de borde */}
+      <div className="absolute inset-4 border border-teal-400/20 pointer-events-none"></div>
+      <div className="absolute inset-6 border border-teal-400/10 pointer-events-none"></div>
     </div>
   );
 }
