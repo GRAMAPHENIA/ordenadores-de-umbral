@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
@@ -31,11 +31,9 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         
         {/* Barra de progreso */}
         <div className="w-full h-4 bg-gray-800 rounded-full overflow-hidden">
-          <motion.div
+          <div
             className="h-full bg-teal-500 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.3 }}
+            style={{ width: `${progress}%` }}
           />
         </div>
         
@@ -47,7 +45,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         
         <div className="mt-8 text-center">
           <p className="text-xs text-gray-500 font-mono">
-            © 2024 SISTEMA UMBRAL v1.0.0
+            © 2025 SISTEMA UMBRAL v1.0.0
           </p>
         </div>
       </div>

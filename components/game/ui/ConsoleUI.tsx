@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { Power, ChevronRight } from "lucide-react";
-import type { Scene } from "@/lib/types";
-import { initialScene } from "@/data/scenes";
+import { useEffect, useState, useRef, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { ChevronRight } from 'lucide-react';
+import type { Scene } from '@/lib/types';
+import { solidIntroScene } from '@/data/scenes/solid';
+import { Header } from '@/components/ui/header/Header';
+import { Footer } from '@/components/ui/footer/Footer';
 
 export default function ConsoleUI() {
   const router = useRouter();
-  const [currentScene, setCurrentScene] = useState<Scene>(initialScene);
+  const [currentScene, setCurrentScene] = useState<Scene>(solidIntroScene);
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
@@ -74,10 +76,130 @@ export default function ConsoleUI() {
     const choice = currentScene.choices[index];
     if (!choice) return;
 
-    // Aplicar efectos si los hay
-    // Aquí podrías actualizar el estado del juego con los efectos
+    // Si la opción tiene una función especial, ejecutarla
+    if (choice.functionName === 'skipTutorial') {
+      const challengeScene = {
+        id: 'challenge-start',
+        text: `> DESAFÍO DE PRINCIPIOS SOLID
 
-    // Navegar a la siguiente escena
+¡Bienvenido al desafío de principios SOLID!
+
+Demuestra tu conocimiento sobre los principios fundamentales del diseño orientado a objetos.
+
+¿Estás listo para comenzar?`,
+        choices: [
+          {
+            functionName: 'startChallenge',
+            description: '¡Sí, comenzar desafío!',
+            nextScene: {
+              id: 'challenge-srp',
+              text: `> PRINCIPIO DE RESPONSABILIDAD ÚNICA (SRP)
+
+¿Cuál de los siguientes ejemplos mejor representa el Principio de Responsabilidad Única?`,
+              choices: [
+                { 
+                  functionName: 'srp-wrong1',
+                  description: 'Una clase Usuario que maneja autenticación, envío de correos y generación de reportes',
+                  nextScene: {
+                    id: 'challenge-srp-feedback-wrong',
+                    text: '❌ Incorrecto. Este es un ejemplo de lo que NO se debe hacer. Una clase no debería tener múltiples responsabilidades.',
+                    choices: [
+                      { functionName: 'retry-srp', description: 'Volver a intentar', nextScene: solidIntroScene }
+                    ]
+                  }
+                },
+                { 
+                  functionName: 'srp-correct',
+                  description: 'Una clase Usuario que solo maneja datos del usuario y otra clase Autenticador que maneja la autenticación',
+                  nextScene: {
+                    id: 'challenge-ocp',
+                    text: `✅ ¡Correcto! Has identificado correctamente el Principio de Responsabilidad Única.
+
+> PRINCIPIO ABIERTO/CERRADO (OCP)
+
+¿Cuál es la mejor manera de extender el comportamiento de una clase sin modificar su código fuente?`,
+                    choices: [
+                      {
+                        functionName: 'ocp-wrong1',
+                        description: 'Modificar directamente la clase existente',
+                        nextScene: {
+                          id: 'ocp-feedback-wrong',
+                          text: '❌ Incorrecto. Modificar directamente la clase existente puede introducir errores en el código que ya funciona.',
+                          choices: [
+                            { functionName: 'retry-ocp', description: 'Volver a intentar', nextScene: solidIntroScene }
+                          ]
+                        }
+                      },
+                      {
+                        functionName: 'ocp-correct',
+                        description: 'Crear una nueva clase que herede de la clase base',
+                        nextScene: {
+                          id: 'challenge-lsp',
+                          text: `✅ ¡Excelente! La herencia es una forma de extender el comportamiento sin modificar el código existente.
+
+> PRINCIPIO DE SUSTITUCIÓN DE LISKOV (LSP)
+
+¿Qué principio se viola cuando una subclase no puede ser utilizada en lugar de su clase base sin alterar el comportamiento del programa?`,
+                          choices: [
+                            {
+                              functionName: 'lsp-correct',
+                              description: 'Principio de Sustitución de Liskov',
+                              nextScene: {
+                                id: 'challenge-completion',
+                                text: `🎉 ¡Felicidades! Has completado el desafío de principios SOLID.
+
+Has demostrado un excelente entendimiento de los principios fundamentales del diseño de software.
+
+¿Qué te gustaría hacer ahora?`,
+                                choices: [
+                                  { functionName: 'back-to-main', description: 'Volver al menú principal', nextScene: solidIntroScene },
+                                  { functionName: 'learn-more', description: 'Aprender más sobre SOLID', nextScene: solidIntroScene }
+                                ]
+                              }
+                            },
+                            {
+                              functionName: 'lsp-wrong1',
+                              description: 'Principio de Inversión de Dependencias',
+                              nextScene: {
+                                id: 'lsp-feedback-wrong',
+                                text: '❌ No exactamente. El Principio de Inversión de Dependencias es diferente. ¡Sigue aprendiendo!',
+                                choices: [
+                                  { functionName: 'retry-lsp', description: 'Volver a intentar', nextScene: solidIntroScene }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                { 
+                  functionName: 'srp-wrong2',
+                  description: 'Una clase que tiene un solo método pero hace muchas cosas diferentes',
+                  nextScene: {
+                    id: 'challenge-srp-feedback-wrong2',
+                    text: '❌ Casi. Aunque la clase tiene un solo método, si ese método hace muchas cosas diferentes, aún podría estar violando el SRP.',
+                    choices: [
+                      { functionName: 'retry-srp', description: 'Volver a intentar', nextScene: solidIntroScene }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            functionName: 'backToMenu',
+            description: 'Volver al menú principal',
+            nextScene: solidIntroScene // Volver al inicio
+          }
+        ]
+      };
+      setCurrentScene(challengeScene);
+      return;
+    }
+
+    // Si la opción tiene una acción de navegación
     if (choice.nextScene) {
       setCurrentScene(choice.nextScene);
     }
@@ -91,21 +213,8 @@ export default function ConsoleUI() {
   }, [displayText, showOptions]);
 
   return (
-    <div className="w-full h-screen bg-black text-teal-400 font-mono flex flex-col overflow-hidden text-sm">
-      {/* Barra de estado superior */}
-      <div className="flex justify-between items-center p-2 text-xs border-b border-teal-900/50 flex-shrink-0">
-        <div className="flex items-center space-x-2">
-          <Power className="w-3 h-3 text-teal-400" />
-          <span className="text-teal-300 font-medium">GRAPHOS</span>
-        </div>
-        <div className="flex items-center space-x-3 text-teal-400/90">
-          <span className="whitespace-nowrap">⚡ 100%</span>
-          <span>•</span>
-          <span className="whitespace-nowrap">MODO: APRENDIZAJE</span>
-          <span>•</span>
-          <span className="text-teal-300 whitespace-nowrap">{currentScene.id.toUpperCase().substring(0, 12)}</span>
-        </div>
-      </div>
+    <div className="w-full h-[calc(100vh-2rem)] bg-black text-teal-400 font-mono flex flex-col overflow-hidden text-sm">
+      <Header currentSceneId={currentScene.id} energy={100} />
 
       {/* Consola principal */}
       <div 
@@ -144,15 +253,7 @@ export default function ConsoleUI() {
         </div>
       </div>
 
-      {/* Barra de estado inferior */}
-      <div className="mt-auto">
-        <div className="h-px bg-teal-900/50 my-1"></div>
-        <div className="flex justify-between items-center text-xs text-teal-500/80 py-2 px-4 bg-black/30">
-          <div className="truncate pr-4">USUARIO: PROGRAMADOR</div>
-          <div className="flex-shrink-0 px-4">TERMINAL: ACTIVA</div>
-          <div className="truncate pl-4 text-teal-400">AYUDA: F1</div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 }
