@@ -16,6 +16,11 @@ export default function MainMenu({ onStart }: MainMenuProps) {
   const { showCredits, showAbout, setShowCredits, setShowAbout } =
     useMenuState();
 
+  // Si estamos en la ruta del juego, no mostrar el menú
+  if (typeof window !== 'undefined' && window.location.pathname === '/ordenador-de-umbral') {
+    return null;
+  }
+
   return (
     <Card className="w-full max-w-3xl terminal-container min-h-[400px] flex flex-col">
       <CardContent className="p-6 flex-1 flex flex-col">

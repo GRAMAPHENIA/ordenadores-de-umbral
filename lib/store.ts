@@ -14,12 +14,16 @@ interface GameState {
   currentScene: Scene | null;
   sceneHistory: Scene[];
   initialized: boolean;
+  showMainMenu: boolean;
 
   // Acciones
   loadScene: (scene: Scene) => void;
   executeChoice: (choice: Choice) => void;
   updatePlayerState: (updates: Partial<PlayerState>) => void;
   resetGame: () => void;
+  toggleMainMenu: () => void;
+  hideMainMenu: () => void;
+  initializeGame: () => void;
 }
 
 interface PlayerState {
@@ -40,13 +44,18 @@ export const useGameStore = create<GameState>((set, get) => ({
   currentScene: null,
   sceneHistory: [],
   initialized: false,
+  showMainMenu: true,
 
   // Acciones
+  toggleMainMenu: () => set((state) => ({ showMainMenu: !state.showMainMenu })),
+  hideMainMenu: () => set({ showMainMenu: false }),
+  initializeGame: () => set({ initialized: true }),
   loadScene: (scene: Scene) => {
     set({
       currentScene: scene,
       sceneHistory: [...get().sceneHistory, scene],
       initialized: true,
+      showMainMenu: false,
     });
   },
 

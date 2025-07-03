@@ -20,34 +20,38 @@ const config = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: "hsl(173, 80%, 40%)",
+        input: "hsl(173, 80%, 20%)",
+        ring: "hsl(173, 80%, 60%)",
+        background: "hsl(0, 0%, 0%)",
+        foreground: "hsl(173, 80%, 90%)",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(173, 80%, 40%)",
+          foreground: "hsl(0, 0%, 100%)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "hsl(173, 60%, 20%)",
+          foreground: "hsl(173, 80%, 90%)",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "hsl(0, 84%, 60%)",
+          foreground: "hsl(0, 0%, 100%)",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "hsl(173, 30%, 15%)",
+          foreground: "hsl(173, 20%, 60%)",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(173, 60%, 30%)",
+          foreground: "hsl(0, 0%, 100%)",
+        },
+        popover: {
+          DEFAULT: "hsl(0, 0%, 5%)",
+          foreground: "hsl(173, 80%, 90%)",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "hsl(0, 0%, 7%)",
+          foreground: "hsl(173, 80%, 90%)",
         },
       },
       borderRadius: {

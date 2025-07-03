@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Info, Code } from "lucide-react";
 
@@ -14,9 +15,20 @@ export default function StartButtons({
   onShowAbout,
   onShowCredits,
 }: StartButtonsProps) {
+  const router = useRouter();
+
+  const handleStart = () => {
+    onStart();
+    router.push('/ordenador-de-umbral');
+  };
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center space-y-4">
-      <Button onClick={onStart} className="w-48 h-12 text-lg" variant="default">
+      <Button 
+        onClick={handleStart} 
+        className="w-48 h-12 text-lg" 
+        variant="default"
+      >
         COMENZAR
       </Button>
 
