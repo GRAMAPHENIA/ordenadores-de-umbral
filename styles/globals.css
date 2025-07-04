@@ -6,6 +6,62 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Estilos de la barra de desplazamiento */
+@layer base {
+  /* WebKit (Chrome, Edge, Safari) */
+  ::-webkit-scrollbar {
+    width: 14px;  /* Un poco más ancho */
+    height: 14px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(0, 0%, 7%);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(167, 100%, 20%);
+    border-radius: 5px;
+    border: 2px solid hsl(0, 0%, 7%);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(167, 100%, 30%);
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: auto;  /* Usar ancho automático para Firefox */
+    scrollbar-color: hsl(167, 100%, 20%) hsl(0, 0%, 7%);
+  }
+
+  /* Clase personalizada para scrollbars */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(167, 100%, 20%) hsl(0, 0%, 7%);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 14px;  /* Mismo ancho */
+    height: 14px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: hsl(0, 0%, 7%);
+    border-radius: 5px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: hsl(167, 100%, 20%);
+    border-radius: 5px;
+    border: 2px solid hsl(0, 0%, 7%);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: hsl(167, 100%, 30%);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

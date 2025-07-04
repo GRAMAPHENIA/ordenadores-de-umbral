@@ -22,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-mono bg-black text-teal-500`}
-      >
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-mono bg-black text-teal-500 scrollbar-custom`}>
         {children}
       </body>
     </html>

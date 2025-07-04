@@ -1,22 +1,128 @@
 import type { Scene } from "@/lib/types"
 
-// Escena de introducción al nivel SOLID
-export const solidIntroScene: Scene = {
-  id: "solid-intro",
-  text: `> Iniciando nivel: PRINCIPIOS SOLID
-> Cargando conocimiento de diseño de software...
-> ¡Bienvenido al nivel de los principios SOLID!
+// Primero definimos la estructura base de la escena de menú
+const menuScene: Scene = {
+  id: "tutorial-menu",
+  text: `> MENÚ PRINCIPAL
 
-Ante ti se despliegan cinco puertas, cada una representando un principio fundamental del diseño orientado a objetos.
+Bienvenido al módulo de aprendizaje de principios SOLID.
 
-"Los principios SOLID son más que simples reglas; son la base para escribir código limpio, mantenible y escalable. 
-¿Estás listo para poner a prueba tu comprensión de estos principios?"
+Selecciona una opción para continuar:`,
+  choices: []
+};
 
-Elige un principio para comenzar:`,
+// Luego definimos la escena de SRP
+const srpScene: Scene = {
+  id: "srp-level",
+  text: `> Cargando: Principio de Responsabilidad Única (SRP)
+> -5 energía
+> +5 ánimo
+
+"Una clase debe tener una única razón para cambiar, lo que significa que debe tener una sola responsabilidad."
+
+Ves una clase llamada 'Usuario' que maneja tanto la autenticación como el envío de correos electrónicos. Claramente está violando el SRP.
+
+"¿Cómo podrías refactorizar esta clase para que cumpla con el principio de responsabilidad única?"`,
   choices: [
     {
+      functionName: "refactorSRP1",
+      description: "Dividir en dos clases: Usuario y EmailService",
+      effects: {
+        energy: -10,
+        mood: 15,
+        bugs: -5
+      },
+      nextScene: {
+        id: "srp-success",
+        text: `> Refactorización exitosa
+> -10 energía
+> +15 ánimo
+> -5 bugs
+
+¡Correcto! Has separado las responsabilidades en dos clases distintas:
+
+1. Usuario: maneja los datos del usuario
+2. EmailService: maneja el envío de correos
+
+"Excelente trabajo. Al separar estas responsabilidades, tu código será más fácil de mantener y probar."`,
+        choices: [
+          {
+            functionName: "continueToOCP",
+            description: "Continuar con el siguiente principio (OCP)",
+            effects: {
+              energy: -5,
+              mood: 5
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
+
+// Finalmente, definimos la escena de introducción
+export const solidIntroScene: Scene = {
+  id: "solid-intro",
+  text: `> INICIANDO NIVEL: PRINCIPIOS SOLID
+> Cargando módulo de diseño de software...
+
+BIENVENIDO AL DESAFÍO DE PRINCIPIOS SOLID
+
+Este nivel te presentará los cinco principios fundamentales del diseño orientado a objetos. Cada principio se presenta a través de ejemplos prácticos y desafíos de programación.
+
+Los principios SOLID son la base para desarrollar software de calidad, mantenible y escalable. A lo largo de este nivel, podrás:
+
+1. Comprender cada principio en profundidad
+2. Identificar violaciones de estos principios
+3. Aplicar soluciones siguiendo buenas prácticas
+
+¿Cómo deseas proceder?`,
+  choices: [
+    {
+      functionName: "startTutorial",
+      description: "Iniciar el tutorial guiado (recomendado)",
+      effects: {
+        energy: -3,
+        mood: 5,
+      },
+      nextScene: {
+        id: "tutorial-start",
+        text: `> TUTORIAL: INTRODUCCIÓN A LOS PRINCIPIOS SOLID
+
+En este tutorial aprenderás los conceptos básicos de cada principio a través de ejemplos prácticos.
+
+Cada principio se presenta con:
+- Una explicación clara
+- Un ejemplo de código problemático
+- Opciones de solución
+- Retroalimentación detallada
+
+¿Listo para comenzar con el primer principio?`,
+        choices: [
+          {
+            functionName: "startSRP",
+            description: "Comenzar con el Principio de Responsabilidad Única (SRP)",
+            effects: {
+              energy: -5,
+              mood: 5
+            },
+            nextScene: srpScene
+          },
+          {
+            functionName: "skipToMenu",
+            description: "Volver al menú principal",
+            effects: {
+              energy: -1,
+              mood: 0
+            },
+            nextScene: menuScene
+          }
+        ]
+      }
+    },
+    {
       functionName: "selectSRP",
-      description: "1. Principio de Responsabilidad Única (SRP)",
+      description: "Ir directamente al Principio de Responsabilidad Única (SRP)",
       effects: {
         energy: -5,
         mood: 5,

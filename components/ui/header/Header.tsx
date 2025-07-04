@@ -1,3 +1,5 @@
+
+
 import { Power, Zap, BrainCircuit, Terminal } from 'lucide-react';
 
 interface HeaderProps {

@@ -238,8 +238,35 @@ Has demostrado un excelente entendimiento de los principios fundamentales del di
       {/* Consola principal */}
       <div 
         ref={consoleRef}
-        className="flex-1 p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-teal-900/50 scrollbar-track-transparent"
+        className="flex-1 p-6 overflow-y-auto"
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'hsl(167, 100%, 20%) hsl(0, 0%, 7%)',
+          msOverflowStyle: 'none',
+        }}
       >
+        <style jsx>{`
+          /* Estilos específicos para la consola */
+          .console-content {
+            scrollbar-width: thin;
+            scrollbar-color: hsl(167, 100%, 20%) hsl(0, 0%, 7%);
+          }
+          .console-content::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+          }
+          .console-content::-webkit-scrollbar-track {
+            background: hsl(0, 0%, 7%);
+          }
+          .console-content::-webkit-scrollbar-thumb {
+            background-color: hsl(167, 100%, 20%);
+            border-radius: 5px;
+            border: 2px solid hsl(0, 0%, 7%);
+          }
+          .console-content::-webkit-scrollbar-thumb:hover {
+            background-color: hsl(167, 100%, 30%);
+          }
+        `}</style>
         <div className="max-w-4xl mx-auto">
           <div className="whitespace-pre-wrap break-words leading-relaxed text-base">
             {displayText}
