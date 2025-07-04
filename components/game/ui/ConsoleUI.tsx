@@ -15,6 +15,7 @@ export default function ConsoleUI() {
   const [isTyping, setIsTyping] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [levelProgress, setLevelProgress] = useState(0);
   const consoleRef = useRef<HTMLDivElement>(null);
 
   // Manejador de teclado
@@ -75,6 +76,24 @@ export default function ConsoleUI() {
   const handleSelectOption = useCallback((index: number) => {
     const choice = currentScene.choices[index];
     if (!choice) return;
+
+    // Actualizar progreso del nivel basado en la escena actual
+    const updateProgress = () => {
+      // Mapeo de escenas a porcentajes de progreso
+      const sceneProgressMap: Record<string, number> = {
+        'solid-intro': 0,
+        'challenge-srp': 20,
+        'challenge-ocp': 40,
+        'challenge-lsp': 60,
+        'challenge-isp': 80,
+        'challenge-dip': 100,
+      };
+
+      const newProgress = sceneProgressMap[currentScene.id] || 0;
+      setLevelProgress(prev => Math.max(prev, newProgress));
+    };
+
+    updateProgress();
 
     // Si la opción tiene una función especial, ejecutarla
     if (choice.functionName === 'skipTutorial') {
@@ -214,7 +233,7 @@ Has demostrado un excelente entendimiento de los principios fundamentales del di
 
   return (
     <div className="w-full h-[calc(100vh-2rem)] bg-black text-teal-400 font-mono flex flex-col overflow-hidden text-sm">
-      <Header currentSceneId={currentScene.id} energy={100} />
+      <Header currentSceneId={currentScene.id} energy={100} progress={levelProgress} />
 
       {/* Consola principal */}
       <div 

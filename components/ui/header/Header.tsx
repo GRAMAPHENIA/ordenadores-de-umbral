@@ -1,11 +1,12 @@
-import { Power, Zap, Brain, Terminal } from 'lucide-react';
+import { Power, Zap, BrainCircuit, Terminal } from 'lucide-react';
 
 interface HeaderProps {
   currentSceneId: string;
   energy?: number;
+  progress?: number;
 }
 
-export function Header({ currentSceneId, energy = 100 }: HeaderProps) {
+export function Header({ currentSceneId, energy = 100, progress = 0 }: HeaderProps) {
   return (
     <div className="flex justify-between items-center p-2 text-xs border-b border-teal-900/50 flex-shrink-0">
       <div className="flex items-center space-x-2">
@@ -19,8 +20,8 @@ export function Header({ currentSceneId, energy = 100 }: HeaderProps) {
         </div>
         <span>•</span>
         <div className="flex items-center space-x-1">
-          <Brain className="w-3.5 h-3.5 text-teal-400" />
-          <span className="whitespace-nowrap">APRENDIZAJE</span>
+          <BrainCircuit className="w-3.5 h-3.5 text-teal-400" />
+          <span className="whitespace-nowrap">NIVEL {progress}%</span>
         </div>
         <span>•</span>
         <div className="flex items-center space-x-1">
