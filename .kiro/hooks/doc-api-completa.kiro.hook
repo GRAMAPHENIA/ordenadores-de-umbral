@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "name": "Documentación API Completa",
+  "description": "Genera documentación completa de la API del proyecto Ordenadores de Umbral incluyendo módulos de dominio, componentes React, stores, configuración y arquitectura en español",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "app/**/*.tsx",
+      "app/**/*.ts",
+      "components/**/*.tsx",
+      "components/**/*.ts",
+      "lib/**/*.ts",
+      "hooks/**/*.ts",
+      "data/**/*.ts",
+      "data/**/*.json",
+      "*.md",
+      "*.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Genera documentación completa de la API del proyecto Ordenadores de Umbral en español. Incluye:\n\n1. **Módulos de Dominio**: Documenta entidades, casos de uso, repositorios y value objects con ejemplos de uso y diagramas de relaciones\n2. **Componentes React**: Documenta props, ejemplos de uso, hooks personalizados y eventos de cada componente\n3. **Stores y Estado**: Documenta estructura del estado, actions, selectors y patrones utilizados\n4. **Configuración**: Documenta opciones disponibles, valores por defecto y personalización\n5. **Arquitectura**: Genera diagramas de dependencias, flujo de datos y patrones arquitectónicos\n\nGenera archivos Markdown organizados en la carpeta `docs/` con la siguiente estructura:\n- `docs/api/dominios/` - Documentación de módulos de dominio\n- `docs/api/componentes/` - Documentación de componentes React\n- `docs/api/estado/` - Documentación de stores y estado\n- `docs/api/configuracion/` - Documentación de configuración\n- `docs/api/arquitectura/` - Diagramas y patrones arquitectónicos\n\nActualiza comentarios JSDoc en el código fuente, incluye ejemplos funcionales, diagramas con Mermaid y guías de uso para desarrolladores. Mantén toda la documentación en español y sigue las convenciones del proyecto."
+  }
+}

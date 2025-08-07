@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Generador de Casos de Uso con Arquitectura Limpia",
+  "description": "Ayuda a crear casos de uso completos siguiendo arquitectura limpia. Pregunta sobre la acción del usuario, módulo involucrado, entidades necesarias y resultado esperado. Genera la clase del caso de uso con interfaz clara, objetos Command/Query, manejo de errores, pruebas unitarias, documentación JSDoc e integración con el proyecto.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "modules/*/application/use-cases/*.ts",
+      "modules/*/domain/entities/*.ts",
+      "modules/*/domain/repositories/*.ts",
+      "lib/types.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Un desarrollador está trabajando en casos de uso para el proyecto Ordenadores de Umbral. Ayúdame a crear un caso de uso completo siguiendo arquitectura limpia. \n\nPrimero pregúntame:\n1. ¿Qué acción del usuario representa este caso de uso?\n2. ¿Qué módulo del proyecto involucra (Game, Player, Scenes, Navigation)?\n3. ¿Qué entidades de dominio necesita?\n4. ¿Cuál es el resultado esperado?\n\nLuego genera:\n- Clase del caso de uso con interfaz clara\n- Objetos Command/Query si son necesarios\n- Manejo de errores apropiado\n- Pruebas unitarias completas\n- Documentación JSDoc en español\n- Integración con el módulo correspondiente\n\nSigue las convenciones del proyecto Ordenadores de Umbral y los principios de arquitectura limpia establecidos."
+  }
+}

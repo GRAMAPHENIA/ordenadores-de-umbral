@@ -1,0 +1,18 @@
+{
+  "name": "Actualizar Documentación",
+  "description": "Actualiza la documentación cuando se modifican archivos importantes",
+  "trigger": {
+    "type": "file_save",
+    "patterns": ["**/domain/**/*.ts", "**/application/**/*.ts", "**/*.tsx"],
+    "exclude": ["**/*.test.ts", "**/node_modules/**"]
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Se ha modificado un archivo importante del proyecto. Revisa si es necesario actualizar la documentación:\n\n1. Verifica si hay cambios en interfaces públicas que requieran actualización de JSDoc\n2. Comprueba si se han añadido nuevos componentes o servicios que necesiten documentación\n3. Actualiza ejemplos de uso si han cambiado las APIs\n4. Revisa si la documentación de arquitectura necesita actualizarse\n\nSolo actualiza la documentación si realmente es necesario. Mantén la documentación concisa y útil.",
+      "description": "Actualizar documentación automáticamente"
+    }
+  ],
+  "enabled": false,
+  "runInBackground": true
+}

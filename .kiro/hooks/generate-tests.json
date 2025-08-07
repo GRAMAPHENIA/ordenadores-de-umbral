@@ -1,0 +1,16 @@
+{
+  "name": "Generar Pruebas Automáticamente",
+  "description": "Genera pruebas unitarias para archivos que no las tienen",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "🧪 Generar Pruebas"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Analiza los archivos en el directorio actual y genera pruebas unitarias para cualquier archivo .ts o .tsx que no tenga un archivo .test.ts correspondiente. \n\nSigue estas reglas:\n1. Usa las guías de testing definidas en el steering\n2. Implementa el patrón AAA (Arrange, Act, Assert)\n3. Crea mocks apropiados para dependencias\n4. Incluye casos de prueba para casos felices, casos edge y manejo de errores\n5. Asegúrate de que las pruebas sean legibles y mantenibles\n\nCrea los archivos de prueba con cobertura completa de la funcionalidad pública.",
+      "description": "Generar pruebas unitarias con IA"
+    }
+  ],
+  "enabled": true
+}

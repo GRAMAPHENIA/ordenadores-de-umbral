@@ -1,0 +1,16 @@
+{
+  "name": "Revisar Progreso de Refactorización",
+  "description": "Analiza el progreso de la refactorización arquitectural",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "📊 Progreso Refactorización"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a analizar el progreso de la refactorización arquitectural del proyecto 'Ordenadores de Umbral'.\n\n**Análisis que realizaré:**\n\n1. **Estado de las Tareas**:\n   - Revisar tasks.md para ver tareas completadas vs pendientes\n   - Identificar bloqueos o dependencias\n   - Sugerir próximos pasos prioritarios\n\n2. **Migración de Componentes**:\n   - Componentes legacy vs nuevos modulares\n   - Funcionalidad migrada correctamente\n   - Compatibilidad mantenida\n\n3. **Implementación de Módulos**:\n   - Módulos de dominio creados (game, player, scenes, navigation)\n   - Casos de uso implementados\n   - Repositorios y servicios funcionando\n\n4. **Calidad del Código**:\n   - Cobertura de pruebas actual\n   - Cumplimiento de principios de arquitectura limpia\n   - Documentación actualizada\n\n5. **Rendimiento y UX**:\n   - Optimizaciones implementadas\n   - Accesibilidad mejorada\n   - Funcionalidad del juego preservada\n\n**Reporte incluirá:**\n- Porcentaje de completitud por área\n- Métricas de calidad (tests, cobertura, etc.)\n- Problemas identificados\n- Recomendaciones para continuar\n- Estimación de trabajo restante",
+      "description": "Análisis completo del progreso de refactorización"
+    }
+  ],
+  "enabled": true
+}

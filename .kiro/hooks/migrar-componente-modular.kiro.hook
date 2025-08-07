@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Migración a Arquitectura Modular",
+  "description": "Analiza y migra componentes existentes a la nueva arquitectura modular del proyecto Ordenadores de Umbral, separando responsabilidades, extrayendo lógica de negocio, creando casos de uso, aplicando principios de arquitectura limpia y mejorando la calidad del código",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "components/**/*.tsx",
+      "components/**/*.ts",
+      "app/**/*.tsx",
+      "app/**/*.ts",
+      "lib/**/*.ts",
+      "hooks/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analiza el componente modificado e identifica oportunidades de migración a la arquitectura modular del proyecto Ordenadores de Umbral. Realiza las siguientes tareas:\n\n1. **Análisis del componente actual**:\n   - Identifica responsabilidades mezcladas (lógica de negocio + presentación)\n   - Detecta dependencias directas a stores globales\n   - Encuentra lógica que debería estar en casos de uso\n   - Revisa el tipado y accesibilidad\n\n2. **Refactorización a arquitectura modular**:\n   - Extrae lógica de negocio a casos de uso específicos\n   - Separa el estado en stores modulares por dominio\n   - Crea hooks personalizados para encapsular lógica compleja\n   - Aplica principios de arquitectura limpia (separación de capas)\n\n3. **Mejoras de calidad**:\n   - Implementa tipado estricto con TypeScript\n   - Optimiza el rendimiento (memoización, lazy loading)\n   - Mejora la accesibilidad (ARIA, navegación por teclado)\n   - Añade manejo de errores robusto\n\n4. **Estructura modular**:\n   - Organiza el código según dominios (Game, Player, Scenes, Navigation)\n   - Crea la estructura: domain/entities, application/use-cases, infrastructure/repositories, presentation/components\n   - Implementa interfaces para repositorios y servicios\n   - Separa entidades de dominio de la lógica de presentación\n\n5. **Testing y documentación**:\n   - Crea pruebas unitarias para casos de uso\n   - Documenta las interfaces públicas\n   - Añade ejemplos de uso en JSDoc\n\nProporciona el código refactorizado siguiendo las convenciones del proyecto (español para contenido, inglés para código) y explica los cambios realizados en español."
+  }
+}

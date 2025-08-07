@@ -1,0 +1,16 @@
+{
+  "name": "Migrar Componente Legacy",
+  "description": "Migra un componente existente a la nueva arquitectura modular",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "🔄 Migrar Componente"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a migrar el componente seleccionado desde la estructura actual a la nueva arquitectura modular. \n\nEste proceso incluye:\n\n1. **Análisis del componente actual**:\n   - Identificar responsabilidades y dependencias\n   - Detectar lógica de negocio mezclada con presentación\n   - Evaluar acoplamiento con otros componentes\n\n2. **Refactorización**:\n   - Extraer lógica de negocio a casos de uso\n   - Separar estado en stores modulares\n   - Crear hooks personalizados para lógica de presentación\n   - Aplicar principios de arquitectura limpia\n\n3. **Mejoras**:\n   - Optimizar rendimiento con memoización\n   - Mejorar accesibilidad\n   - Añadir tipado estricto\n   - Crear pruebas unitarias\n\n4. **Integración**:\n   - Actualizar imports y dependencias\n   - Mantener compatibilidad con componentes existentes\n   - Documentar cambios realizados\n\n¿Cuál es el componente que quieres migrar?",
+      "description": "Migrar componente a nueva arquitectura"
+    }
+  ],
+  "enabled": true
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Validar Dependencias de Arquitectura",
+  "description": "Verifica que las dependencias respeten las reglas de arquitectura limpia",
+  "trigger": {
+    "type": "file_save",
+    "patterns": ["**/modules/**/*.ts", "**/modules/**/*.tsx"],
+    "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/node_modules/**"]
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Se ha modificado un archivo en los módulos. Voy a validar que las dependencias respeten las reglas de arquitectura limpia:\n\n**Reglas a verificar:**\n1. **Dominio** no debe depender de Aplicación, Infraestructura o Presentación\n2. **Aplicación** puede depender de Dominio, pero no de Infraestructura o Presentación\n3. **Infraestructura** puede depender de Dominio y Aplicación\n4. **Presentación** puede depender de Aplicación, pero no directamente de Infraestructura\n\n**Validaciones específicas:**\n- Imports entre capas\n- Uso de interfaces vs implementaciones concretas\n- Inyección de dependencias correcta\n- Separación de responsabilidades\n\nSi encuentro violaciones, proporcionaré:\n- Descripción del problema\n- Impacto en la arquitectura\n- Sugerencias de refactorización\n- Ejemplos de código corregido",
+      "description": "Validar reglas de dependencias automáticamente"
+    }
+  ],
+  "enabled": true,
+  "runInBackground": true
+}

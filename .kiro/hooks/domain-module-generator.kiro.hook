@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Generador de Módulos de Dominio",
+  "description": "Ayuda a crear la estructura completa de un nuevo módulo de dominio siguiendo arquitectura limpia. Genera directorios, entidades, casos de uso, repositorios, pruebas y tipos TypeScript apropiados para el proyecto Ordenadores de Umbral.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "modules/*/domain/entities/*.ts",
+      "modules/*/application/use-cases/*.ts",
+      "lib/types.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "El usuario necesita crear un nuevo módulo de dominio siguiendo arquitectura limpia. Pregúntale:\n\n1. ¿Cuál es el nombre del módulo de dominio que quieres crear?\n2. ¿Cuáles son las entidades principales de este dominio?\n3. ¿Qué casos de uso principales necesitas implementar?\n\nUna vez que tengas esta información, genera la estructura completa:\n\n**Estructura de directorios:**\n- modules/[nombre-modulo]/domain/ (entities/, value-objects/, services/, repositories/)\n- modules/[nombre-modulo]/application/ (use-cases/, services/)\n- modules/[nombre-modulo]/infrastructure/ (repositories/, adapters/)\n- modules/[nombre-modulo]/presentation/ (components/, hooks/, stores/)\n\n**Para cada entidad, crea:**\n- Entidad de dominio con validaciones apropiadas\n- Value objects necesarios (IDs, etc.)\n- Interface de repositorio en domain/repositories/\n- Implementación de repositorio en infrastructure/repositories/\n- Casos de uso principales en application/use-cases/\n- Pruebas unitarias para entidades y casos de uso\n- Tipos TypeScript en el archivo apropiado\n- Hooks de presentación si son necesarios\n- Componentes React básicos para la UI\n\n**Sigue estas convenciones del proyecto Ordenadores de Umbral:**\n- Naming: PascalCase para entidades, camelCase para variables, kebab-case para archivos\n- Idioma: Código en inglés, comentarios y documentación en español\n- Arquitectura limpia: Dependencias solo hacia adentro\n- Testing: Jest + Testing Library para pruebas unitarias\n- Tipado: TypeScript estricto con interfaces bien definidas\n\n**Asegúrate de:**\n- Seguir los principios SOLID\n- Implementar la regla de dependencias de arquitectura limpia\n- Crear entidades sin dependencias de frameworks\n- Generar casos de uso que orquesten entidades\n- Incluir validaciones apropiadas en las entidades\n- Crear pruebas unitarias completas\n- Documentar las interfaces públicas"
+  }
+}

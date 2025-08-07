@@ -1,0 +1,16 @@
+{
+  "name": "Revisar Accesibilidad",
+  "description": "Analiza y mejora la accesibilidad de componentes",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "♿ Revisar Accesibilidad"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a realizar una auditoría completa de accesibilidad del componente seleccionado.\n\n**Aspectos que revisaré:**\n\n1. **Navegación por teclado**:\n   - Orden de tabulación lógico\n   - Manejo de focus apropiado\n   - Shortcuts de teclado documentados\n   - Escape para cerrar modales/menús\n\n2. **ARIA y semántica**:\n   - Elementos HTML semánticos apropiados\n   - Atributos ARIA necesarios\n   - Labels y descripciones\n   - Live regions para contenido dinámico\n\n3. **Contraste y visibilidad**:\n   - Ratios de contraste WCAG 2.1 AA\n   - Indicadores de focus visibles\n   - Soporte para modo de alto contraste\n   - Texto alternativo para imágenes\n\n4. **Compatibilidad con lectores de pantalla**:\n   - Estructura de headings\n   - Anuncios apropiados\n   - Contenido oculto correctamente\n\n5. **Responsive y zoom**:\n   - Funcionalidad hasta 200% zoom\n   - Adaptación a diferentes tamaños\n\n**Implementaré:**\n- Correcciones de accesibilidad\n- Pruebas automatizadas con jest-axe\n- Documentación de uso accesible\n- Hooks personalizados para funcionalidad común",
+      "description": "Auditoría y mejora de accesibilidad"
+    }
+  ],
+  "enabled": true
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Generar Documentación de API",
+  "description": "Genera documentación automática para módulos y componentes",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "📚 Generar Docs API"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a generar documentación completa de la API del proyecto 'Ordenadores de Umbral'.\n\n**Documentación que generaré:**\n\n1. **Módulos de Dominio**:\n   - Entidades con sus propiedades y métodos\n   - Casos de uso con ejemplos de uso\n   - Interfaces de repositorios\n   - Value objects y sus validaciones\n\n2. **Componentes React**:\n   - Props interfaces con descripciones\n   - Ejemplos de uso básico y avanzado\n   - Hooks personalizados\n   - Eventos y callbacks\n\n3. **Stores y Estado**:\n   - Estructura del estado\n   - Actions disponibles\n   - Selectors optimizados\n   - Patrones de uso\n\n4. **Configuración**:\n   - Opciones de configuración disponibles\n   - Valores por defecto\n   - Ejemplos de personalización\n\n5. **Arquitectura**:\n   - Diagramas de dependencias\n   - Flujo de datos\n   - Patrones implementados\n\n**Formato de salida:**\n- Archivos Markdown organizados\n- Comentarios JSDoc actualizados\n- Ejemplos de código funcionales\n- Diagramas con Mermaid cuando sea apropiado\n- Guías de uso para desarrolladores\n\n¿Quieres documentación completa o de algún módulo específico?",
+      "description": "Generar documentación completa de API"
+    }
+  ],
+  "enabled": true
+}

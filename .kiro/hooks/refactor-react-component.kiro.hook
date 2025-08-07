@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Refactorizar Componente React",
+  "description": "Refactoriza el componente React seleccionado siguiendo las mejores prácticas del proyecto Ordenadores de Umbral. Aplica principios de arquitectura limpia, optimiza el rendimiento con memoización apropiada, mejora la accesibilidad con ARIA y navegación por teclado, separa la lógica de presentación usando hooks personalizados, asegúrate de que el componente sea testeable y manténlo pequeño y enfocado en una responsabilidad. Si el componente es muy grande, sugiere cómo dividirlo en componentes más pequeños manteniendo la funcionalidad existente.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "components/**/*.tsx",
+      "app/**/*.tsx",
+      "hooks/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analiza el componente React modificado y refactorízalo siguiendo estas directrices:\n\n## Arquitectura Limpia\n- Separa la lógica de negocio de la presentación\n- Crea hooks personalizados para la lógica compleja\n- Aplica principios SOLID (especialmente Single Responsibility)\n- Asegúrate de que las dependencias apunten hacia adentro\n\n## Optimización de Rendimiento\n- Usa React.memo() cuando sea apropiado\n- Implementa useMemo() y useCallback() para cálculos costosos\n- Evita re-renders innecesarios\n- Optimiza el manejo de eventos\n\n## Accesibilidad\n- Añade atributos ARIA apropiados\n- Implementa navegación por teclado completa\n- Asegúrate de que sea compatible con lectores de pantalla\n- Usa roles semánticos correctos\n\n## Testabilidad\n- Separa la lógica en funciones puras cuando sea posible\n- Usa data-testid para elementos importantes\n- Evita dependencias difíciles de mockear\n- Estructura el código para facilitar unit tests\n\n## Estructura del Componente\n- Mantén componentes pequeños y enfocados\n- Si el componente es muy grande, sugiere división en subcomponentes\n- Usa TypeScript con tipos estrictos\n- Sigue las convenciones de naming del proyecto\n\n## Consideraciones Específicas del Proyecto\n- Mantén la estética retro/terminal\n- Asegúrate de que funcione con el sistema de navegación por teclado\n- Integra apropiadamente con Zustand store si es necesario\n- Sigue las convenciones de idioma (código en inglés, contenido en español)\n\nProporciona el código refactorizado completo con explicaciones de los cambios realizados y justificaciones técnicas. Si el componente requiere división, muestra la estructura propuesta con múltiples archivos."
+  }
+}

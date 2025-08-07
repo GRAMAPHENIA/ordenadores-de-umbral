@@ -1,0 +1,18 @@
+{
+  "name": "Ejecutar Pruebas Automáticamente",
+  "description": "Ejecuta las pruebas relacionadas cuando se guarda un archivo de código",
+  "trigger": {
+    "type": "file_save",
+    "patterns": ["**/modules/**/*.ts", "**/modules/**/*.tsx", "**/components/**/*.tsx", "**/lib/**/*.ts"],
+    "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/node_modules/**", "**/*.d.ts"]
+  },
+  "actions": [
+    {
+      "type": "run_command",
+      "command": "npm test -- --findRelatedTests ${file} --passWithNoTests --verbose",
+      "description": "Ejecutar pruebas relacionadas con el archivo guardado"
+    }
+  ],
+  "enabled": false,
+  "runInBackground": true
+}

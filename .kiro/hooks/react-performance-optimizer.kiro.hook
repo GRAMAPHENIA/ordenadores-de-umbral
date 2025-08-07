@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Optimizador de Rendimiento React",
+  "description": "Analiza y optimiza automáticamente el rendimiento de componentes React cuando se detectan cambios en archivos. Identifica re-renders innecesarios, props problemáticas, funciones recreadas, dependencias de useEffect, y sugiere optimizaciones con React.memo, useMemo, useCallback, lazy loading y code splitting.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "components/**/*.tsx",
+      "components/**/*.ts",
+      "app/**/*.tsx",
+      "app/**/*.ts",
+      "hooks/**/*.tsx",
+      "hooks/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analiza y optimiza el rendimiento del componente React que ha sido modificado. Realiza las siguientes tareas:\n\n1. **Análisis de Re-renders**:\n   - Identifica re-renders innecesarios en el componente\n   - Detecta props que cambian frecuentemente sin necesidad\n   - Encuentra funciones que se recrean en cada render\n   - Analiza dependencias problemáticas en useEffect, useMemo y useCallback\n\n2. **Oportunidades de Memoización**:\n   - Evalúa si el componente se beneficiaría de React.memo\n   - Identifica cálculos costosos que necesitan useMemo\n   - Detecta funciones que deberían usar useCallback\n   - Analiza props drilling y sugiere optimizaciones\n\n3. **Code Splitting y Lazy Loading**:\n   - Evalúa oportunidades para React.lazy\n   - Sugiere puntos de code splitting apropiados\n   - Identifica componentes que se beneficiarían de Suspense boundaries\n   - Analiza el bundle size impact\n\n4. **Optimización de Estado**:\n   - Revisa el uso de Zustand store y sugiere selectors optimizados\n   - Identifica estado que debería separarse por frecuencia de cambio\n   - Sugiere batching de actualizaciones cuando sea apropiado\n   - Evalúa la estructura del estado global\n\n5. **Implementación de Optimizaciones**:\n   - Proporciona código específico con las optimizaciones implementadas\n   - Mantén la funcionalidad existente intacta\n   - Sigue las convenciones del proyecto (TypeScript, arquitectura limpia)\n   - Usa el idioma español para comentarios y documentación\n\n6. **Pruebas de Performance**:\n   - Crea pruebas específicas para validar las mejoras de rendimiento\n   - Incluye benchmarks antes/después cuando sea relevante\n   - Sugiere métricas de performance a monitorear\n\nResponde en español y proporciona ejemplos de código concretos y aplicables al componente modificado."
+  }
+}

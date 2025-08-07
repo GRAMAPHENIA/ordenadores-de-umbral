@@ -1,0 +1,16 @@
+{
+  "name": "Crear Módulo de Dominio",
+  "description": "Crea la estructura completa de un nuevo módulo siguiendo arquitectura limpia",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "🏗️ Crear Módulo"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a crear un nuevo módulo de dominio siguiendo la arquitectura limpia definida en el proyecto. \n\nPor favor, dime:\n1. ¿Cuál es el nombre del módulo? (ej: player, game, scenes)\n2. ¿Cuáles son las entidades principales de este dominio?\n3. ¿Qué casos de uso principales necesita?\n\nUna vez que me proporciones esta información, crearé:\n- Estructura de directorios completa (domain/, application/, infrastructure/, presentation/)\n- Entidades de dominio con validaciones\n- Interfaces de repositorios\n- Casos de uso principales\n- Pruebas unitarias básicas\n- Tipos TypeScript apropiados\n\nTodo siguiendo los principios de arquitectura limpia y las convenciones del proyecto.",
+      "description": "Crear estructura completa de módulo de dominio"
+    }
+  ],
+  "enabled": true
+}

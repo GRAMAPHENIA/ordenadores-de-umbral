@@ -1,0 +1,24 @@
+{
+  "enabled": true,
+  "name": "Auditoría Arquitectura Ordenadores de Umbral",
+  "description": "Realiza una auditoría completa de la arquitectura del proyecto validando dependencias, organización por capas, convenciones de naming y principios SOLID",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "app/**/*.tsx",
+      "app/**/*.ts",
+      "components/**/*.tsx",
+      "components/**/*.ts",
+      "lib/**/*.ts",
+      "hooks/**/*.ts",
+      "data/**/*.ts",
+      "modules/**/*.ts",
+      "shared/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Realiza una auditoría completa de la arquitectura del proyecto Ordenadores de Umbral. Analiza los archivos modificados y valida:\n\n1. **Regla de Dependencias**: Verifica que las dependencias solo apunten hacia adentro según arquitectura limpia\n2. **Estructura de Módulos**: Evalúa si los módulos están organizados por capas correctas (dominio, aplicación, infraestructura, presentación)\n3. **Convenciones de Naming**: Revisa que se sigan las convenciones establecidas (kebab-case archivos, PascalCase componentes, camelCase variables)\n4. **Principios SOLID**: Analiza cumplimiento de Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation y Dependency Inversion\n\nProporciona un reporte detallado en español que incluya:\n- Lista de problemas encontrados con ubicación específica\n- Sugerencias específicas de refactorización para cada problema\n- Ejemplos de código corregido cuando sea aplicable\n- Métricas de calidad arquitectural (acoplamiento, cohesión, complejidad)\n- Recomendaciones prioritarias para mejorar la arquitectura\n\nEnfócate especialmente en validar que la estructura actual se alinee con los objetivos de arquitectura hexagonal y modular definidos en el contexto del proyecto."
+  }
+}

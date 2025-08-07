@@ -1,0 +1,16 @@
+{
+  "name": "Crear Store Modular",
+  "description": "Crea un store de Zustand modular siguiendo las mejores prácticas",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "🗄️ Crear Store"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a crear un store modular de Zustand siguiendo las mejores prácticas del proyecto.\n\n**Características del store:**\n1. **Modularidad**: Enfocado en un dominio específico\n2. **Inmutabilidad**: Usando middleware immer\n3. **Selectors optimizados**: Para prevenir re-renders\n4. **Tipado estricto**: Con TypeScript completo\n5. **Persistencia**: Si es necesaria\n6. **DevTools**: Para debugging\n\nPor favor, especifica:\n1. ¿Para qué módulo es el store? (game, player, scenes, navigation)\n2. ¿Qué estado necesita manejar?\n3. ¿Qué acciones debe soportar?\n4. ¿Necesita persistencia en localStorage?\n5. ¿Hay estado que se comparte con otros stores?\n\n**Crearé:**\n- Interface del store con tipos estrictos\n- Implementación con middleware apropiado\n- Selectors optimizados\n- Actions con validaciones\n- Hooks personalizados para uso en componentes\n- Pruebas unitarias del store\n- Documentación de uso",
+      "description": "Crear store modular de Zustand"
+    }
+  ],
+  "enabled": true
+}

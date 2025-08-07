@@ -1,0 +1,16 @@
+{
+  "name": "Crear Caso de Uso",
+  "description": "Genera un caso de uso completo con su estructura y pruebas",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "⚡ Crear Caso de Uso"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a crear un caso de uso completo siguiendo los principios de arquitectura limpia.\n\nUn caso de uso debe:\n- Representar una acción específica del usuario\n- Orquestar entidades y servicios de dominio\n- No contener lógica de presentación\n- Ser fácilmente testeable\n\nPor favor, describe:\n1. ¿Qué acción del usuario representa este caso de uso?\n2. ¿Qué módulo de dominio involucra? (game, player, scenes, navigation)\n3. ¿Qué entidades o servicios necesita?\n4. ¿Cuál es el resultado esperado?\n\nCrearé:\n- Clase del caso de uso con interfaz clara\n- Comando/Query objects si son necesarios\n- Manejo de errores apropiado\n- Pruebas unitarias completas\n- Documentación JSDoc\n- Integración con el módulo correspondiente",
+      "description": "Crear caso de uso con estructura completa"
+    }
+  ],
+  "enabled": true
+}

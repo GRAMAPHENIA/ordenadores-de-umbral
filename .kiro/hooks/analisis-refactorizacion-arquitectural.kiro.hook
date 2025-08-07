@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "name": "Análisis de Refactorización Arquitectural",
+  "description": "Analiza automáticamente el progreso de la refactorización arquitectural del proyecto Ordenadores de Umbral cuando se modifican archivos clave del proyecto",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "tasks.md",
+      "lib/**/*.ts",
+      "modules/**/*.ts",
+      "app/**/*.tsx",
+      "components/**/*.tsx",
+      "docs/**/*.md",
+      "package.json",
+      "tsconfig.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analiza el progreso de la refactorización arquitectural del proyecto Ordenadores de Umbral. Revisa el estado de las tareas en tasks.md, identifica bloqueos y dependencias, sugiere próximos pasos. Evalúa la migración de componentes legacy vs nuevos modulares, implementación de módulos de dominio, casos de uso y repositorios. Analiza calidad del código (cobertura de pruebas, cumplimiento de arquitectura limpia, documentación), rendimiento y UX. Proporciona reporte con porcentaje de completitud, métricas de calidad, problemas identificados, recomendaciones y estimación de trabajo restante. Responde en español."
+  }
+}

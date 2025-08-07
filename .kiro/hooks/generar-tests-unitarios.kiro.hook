@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Generador de Tests Unitarios",
+  "description": "Analiza archivos .ts y .tsx en el directorio actual y genera pruebas unitarias completas para aquellos que no tengan un archivo .test.ts correspondiente. Implementa el patrón AAA, crea mocks apropiados y cubre casos felices, edge cases y manejo de errores.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.ts",
+      "**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analiza los archivos TypeScript en el directorio actual y genera pruebas unitarias para cualquier archivo .ts o .tsx que no tenga un archivo .test.ts correspondiente.\n\nPara cada archivo sin tests:\n\n1. **Análisis del archivo**:\n   - Identifica todas las funciones, clases, hooks y componentes exportados\n   - Analiza las dependencias y imports\n   - Determina el tipo de archivo (componente React, hook, utilidad, servicio, etc.)\n\n2. **Generación de tests siguiendo estas guías**:\n   - **Patrón AAA**: Arrange (preparar), Act (actuar), Assert (verificar)\n   - **Estructura clara**: describe blocks para cada función/método, it blocks para cada caso\n   - **Casos de prueba completos**:\n     - Casos felices (happy path)\n     - Casos edge (valores límite, arrays vacíos, strings vacíos)\n     - Manejo de errores (inputs inválidos, excepciones)\n   - **Mocks apropiados**: Mock de dependencias externas, APIs, módulos\n   - **Cobertura completa**: Todas las funciones públicas y métodos exportados\n\n3. **Convenciones específicas del proyecto**:\n   - Usar Jest + Testing Library para componentes React\n   - Seguir arquitectura limpia: separar tests por capas (domain, application, infrastructure, presentation)\n   - Nombres en español para describes e its\n   - Usar TypeScript estricto en los tests\n   - Incluir tests de tipos cuando sea relevante\n\n4. **Estructura del archivo de test**:\n   ```typescript\n   import { render, screen } from '@testing-library/react'\n   import { ComponenteATestear } from './archivo-original'\n   \n   describe('ComponenteATestear', () => {\n     describe('cuando se renderiza correctamente', () => {\n       it('debería mostrar el contenido esperado', () => {\n         // Arrange\n         const props = { ... }\n         \n         // Act\n         render(<ComponenteATestear {...props} />)\n         \n         // Assert\n         expect(screen.getByText('...')).toBeInTheDocument()\n       })\n     })\n   })\n   ```\n\n5. **Para cada archivo sin tests, crea**:\n   - Un archivo .test.ts o .test.tsx en el mismo directorio\n   - Tests completos con cobertura de todas las funciones públicas\n   - Mocks apropiados para dependencias\n   - Casos de prueba exhaustivos\n   - Documentación clara de qué se está probando\n\nResponde en español y asegúrate de que los tests sean legibles, mantenibles y sigan las mejores prácticas del proyecto."
+  }
+}

@@ -13,41 +13,70 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1200px",
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)"],
+        mono: ['"VT323"', 'monospace'],
+      },
       colors: {
-        border: "hsl(173, 80%, 40%)",
-        input: "hsl(173, 80%, 20%)",
-        ring: "hsl(173, 80%, 60%)",
-        background: "hsl(0, 0%, 0%)",
-        foreground: "hsl(173, 80%, 90%)",
+        // Tonos teal para el texto
+        text: {
+          DEFAULT: "#14FFEC", // Teal neón brillante
+          dark: "#0D9488",   // Teal oscuro
+          light: "#5EEAD4",  // Teal claro
+          muted: "#0F766E",  // Teal apagado
+        },
+        // Alias para compatibilidad
+        foreground: {
+          DEFAULT: "#14FFEC",
+          dark: "#0D9488",
+          light: "#5EEAD4",
+          muted: "#0F766E",
+        },
+        // Fondo oscuro
+        background: {
+          DEFAULT: "#0A0F0F", // Casi negro con tono teal
+          dark: "#000000",    // Negro puro
+          light: "#0F1E1D",   // Gris muy oscuro con tono teal
+          paper: "#0D1717",   // Fondo de tarjetas con tono teal
+        },
+        // Bordes y elementos de interfaz
+        border: {
+          DEFAULT: "#0F766E",
+          input: "#134E4A",
+        },
+        ring: {
+          DEFAULT: "#14FFEC",
+        },
+        // Colores de botones y elementos interactivos
         primary: {
-          DEFAULT: "hsl(173, 80%, 40%)",
-          foreground: "hsl(0, 0%, 100%)",
+          DEFAULT: "#14FFEC",
+          foreground: "#000000",
         },
         secondary: {
-          DEFAULT: "hsl(173, 60%, 20%)",
-          foreground: "hsl(173, 80%, 90%)",
+          DEFAULT: "#134E4A",
+          foreground: "#14FFEC",
         },
         destructive: {
-          DEFAULT: "hsl(0, 84%, 60%)",
-          foreground: "hsl(0, 0%, 100%)",
+          DEFAULT: "#FF3333", // Rojo para errores
+          foreground: "#FFFFFF",
         },
         muted: {
-          DEFAULT: "hsl(173, 30%, 15%)",
-          foreground: "hsl(173, 20%, 60%)",
+          DEFAULT: "#134E4A",
+          foreground: "#5EEAD4",
         },
         accent: {
-          DEFAULT: "hsl(173, 60%, 30%)",
-          foreground: "hsl(0, 0%, 100%)",
+          DEFAULT: "#0F766E",
+          foreground: "#14FFEC",
         },
         popover: {
-          DEFAULT: "hsl(0, 0%, 5%)",
-          foreground: "hsl(173, 80%, 90%)",
+          DEFAULT: "hsl(0, 0%, 10%)",
+          foreground: "hsl(0, 0%, 98%)",
         },
         card: {
           DEFAULT: "hsl(0, 0%, 7%)",
@@ -58,10 +87,6 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      fontFamily: {
-        sans: ["var(--font-sans)"],
-        mono: ["var(--font-mono)"],
       },
       keyframes: {
         "accordion-down": {

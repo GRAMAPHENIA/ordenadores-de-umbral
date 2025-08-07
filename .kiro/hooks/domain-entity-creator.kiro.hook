@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Creador de Entidades de Dominio",
+  "description": "Ayuda a crear entidades de dominio siguiendo principios de Domain-Driven Design, preguntando por nombre, módulo, propiedades, reglas de negocio y comportamientos, luego genera la clase completa con encapsulación, value objects, validaciones, pruebas y documentación en español",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "modules/*/domain/entities/*.ts",
+      "lib/types.ts",
+      "app/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "El usuario necesita crear una entidad de dominio siguiendo Domain-Driven Design. Pregúntale:\n\n1. **Nombre de la entidad**: ¿Cómo se llama la entidad que quieres crear?\n2. **Módulo**: ¿A qué módulo de dominio pertenece? (ej: player, game, scenes, navigation)\n3. **Propiedades principales**: ¿Cuáles son las propiedades principales de esta entidad?\n4. **Reglas de negocio**: ¿Qué reglas de negocio debe validar esta entidad?\n5. **Comportamientos**: ¿Qué métodos o comportamientos necesita tener?\n\nUna vez que tengas esta información, crea:\n\n- Clase de entidad con encapsulación apropiada\n- Value objects para propiedades complejas\n- Validaciones de reglas de negocio\n- Métodos de comportamiento necesarios\n- Tipos TypeScript branded para IDs\n- Suite completa de pruebas unitarias\n- Documentación JSDoc detallada\n\nTodo en español y siguiendo los principios de arquitectura limpia del proyecto. Usa la estructura de módulos: `modules/[dominio]/domain/entities/` y asegúrate de que la entidad no dependa de frameworks externos."
+  }
+}

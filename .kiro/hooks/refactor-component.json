@@ -1,0 +1,16 @@
+{
+  "name": "Refactorizar Componente",
+  "description": "Refactoriza un componente React siguiendo las mejores prácticas",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "⚡ Refactorizar Componente"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Refactoriza el componente React seleccionado siguiendo las mejores prácticas definidas en el steering. Específicamente:\n\n1. Aplica principios de arquitectura limpia\n2. Optimiza el rendimiento con memoización apropiada\n3. Mejora la accesibilidad con ARIA y navegación por teclado\n4. Separa la lógica de presentación usando hooks personalizados\n5. Asegúrate de que el componente sea testeable\n6. Mantén el componente pequeño y enfocado en una responsabilidad\n\nSi el componente es muy grande, sugiere cómo dividirlo en componentes más pequeños. Mantén la funcionalidad existente mientras mejoras la estructura y calidad del código.",
+      "description": "Refactorizar componente con mejores prácticas"
+    }
+  ],
+  "enabled": true
+}

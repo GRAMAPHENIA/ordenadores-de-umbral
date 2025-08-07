@@ -1,0 +1,16 @@
+{
+  "name": "Crear Entidad de Dominio",
+  "description": "Genera una entidad de dominio completa con validaciones y pruebas",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "🎯 Crear Entidad"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a crear una entidad de dominio siguiendo los principios de Domain-Driven Design.\n\nUna entidad de dominio debe:\n- Encapsular lógica de negocio importante\n- Tener identidad única\n- Mantener invariantes del dominio\n- Ser independiente de frameworks\n- Ser completamente testeable\n\nPor favor, proporciona:\n1. ¿Cuál es el nombre de la entidad?\n2. ¿Qué módulo de dominio pertenece? (game, player, scenes, navigation)\n3. ¿Cuáles son sus propiedades principales?\n4. ¿Qué reglas de negocio debe validar?\n5. ¿Qué comportamientos (métodos) debe tener?\n\nCrearé:\n- Clase de entidad con encapsulación apropiada\n- Value objects para propiedades complejas\n- Validaciones de reglas de negocio\n- Métodos de comportamiento\n- Tipos TypeScript branded para IDs\n- Suite completa de pruebas unitarias\n- Documentación JSDoc detallada",
+      "description": "Crear entidad de dominio completa"
+    }
+  ],
+  "enabled": true
+}

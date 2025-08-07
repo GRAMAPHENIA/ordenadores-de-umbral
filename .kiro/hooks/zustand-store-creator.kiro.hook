@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Creador de Store Zustand Modular",
+  "description": "Ayuda a crear stores modulares de Zustand siguiendo las mejores prácticas del proyecto. Pregunta sobre el módulo, estado, acciones, persistencia y estado compartido, luego genera la interfaz con tipos estrictos, implementación con middleware, selectors optimizados, actions con validaciones, hooks personalizados, pruebas unitarias y documentación.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "lib/store.ts",
+      "lib/types.ts",
+      "modules/**/*.ts",
+      "stores/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "El usuario está trabajando en stores de Zustand. Ayúdalo a crear un store modular siguiendo las mejores prácticas del proyecto \"Ordenadores de Umbral\". \n\nPregúntale específicamente:\n1. ¿Para qué módulo/dominio es el store? (Game, Player, Scenes, Navigation, etc.)\n2. ¿Qué estado necesita manejar? (propiedades y tipos)\n3. ¿Qué acciones debe soportar? (métodos y operaciones)\n4. ¿Necesita persistencia? (localStorage, sessionStorage, etc.)\n5. ¿Hay estado compartido con otros stores?\n\nLuego crea:\n- Interface del store con tipos estrictos de TypeScript\n- Implementación con middleware apropiado (persist, devtools, etc.)\n- Selectors optimizados para evitar re-renders innecesarios\n- Actions con validaciones y manejo de errores\n- Hooks personalizados para componentes React\n- Pruebas unitarias del store\n- Documentación de uso con ejemplos\n\nSigue la arquitectura limpia del proyecto y las convenciones establecidas. Usa español para comentarios y documentación."
+  }
+}

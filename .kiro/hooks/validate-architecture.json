@@ -1,0 +1,16 @@
+{
+  "name": "Validar Arquitectura Limpia",
+  "description": "Valida que los archivos sigan las reglas de arquitectura limpia",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "🏗️ Validar Arquitectura"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a realizar una auditoría completa de la arquitectura del proyecto 'Ordenadores de Umbral'.\n\n**Validaciones que realizaré:**\n\n1. **Regla de Dependencias**:\n   - Dominio no depende de capas externas\n   - Aplicación solo depende de Dominio\n   - Infraestructura implementa interfaces de Dominio\n   - Presentación usa casos de uso, no lógica de dominio directa\n\n2. **Estructura de Módulos**:\n   - Cada módulo (game, player, scenes, navigation) tiene capas correctas\n   - Separación clara entre domain/, application/, infrastructure/, presentation/\n   - Interfaces en dominio, implementaciones en infraestructura\n\n3. **Convenciones de Naming**:\n   - Entidades: Player, Game, Scene\n   - Casos de Uso: StartGameUseCase, LoadSceneUseCase\n   - Repositorios: PlayerRepository, SceneRepository\n   - Value Objects: PlayerId, Energy, SceneContent\n\n4. **Principios SOLID**:\n   - Responsabilidad única por clase\n   - Abierto/cerrado para extensión\n   - Sustitución de Liskov\n   - Segregación de interfaces\n   - Inversión de dependencias\n\n**Reporte incluirá:**\n- Problemas encontrados con severidad\n- Sugerencias específicas de refactorización\n- Ejemplos de código corregido\n- Métricas de calidad arquitectural",
+      "description": "Auditoría completa de arquitectura limpia"
+    }
+  ],
+  "enabled": true
+}

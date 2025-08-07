@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Auditoría de Accesibilidad",
+  "description": "Realiza una auditoría completa de accesibilidad del componente seleccionado incluyendo navegación por teclado, ARIA, contraste, compatibilidad con lectores de pantalla y responsive design",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "components/**/*.tsx",
+      "components/**/*.ts",
+      "app/**/*.tsx",
+      "hooks/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Realiza una auditoría completa de accesibilidad del componente modificado. Revisa:\n\n1. **Navegación por teclado**: \n   - Orden de tabulación lógico\n   - Manejo correcto del focus\n   - Shortcuts de teclado apropiados\n   - Escape y navegación con flechas donde corresponda\n\n2. **ARIA y semántica**:\n   - Elementos HTML semánticamente apropiados\n   - Atributos ARIA correctos (aria-label, aria-describedby, role, etc.)\n   - Labels asociados correctamente\n   - Live regions para contenido dinámico\n\n3. **Contraste y visibilidad**:\n   - Ratios de contraste WCAG 2.1 AA (4.5:1 para texto normal, 3:1 para texto grande)\n   - Indicadores de focus visibles\n   - Soporte para modo alto contraste\n   - Estados hover/focus/active claramente diferenciados\n\n4. **Compatibilidad con lectores de pantalla**:\n   - Estructura de headings jerárquica\n   - Anuncios apropiados para cambios de estado\n   - Texto alternativo para imágenes\n   - Descripción de elementos interactivos\n\n5. **Responsive y zoom**:\n   - Funcionalidad mantenida hasta 200% de zoom\n   - Contenido accesible en dispositivos móviles\n   - Texto legible sin scroll horizontal\n\n**Implementa las correcciones necesarias**:\n- Añade atributos ARIA faltantes\n- Corrige problemas de contraste\n- Mejora la navegación por teclado\n- Crea hooks personalizados para funcionalidad accesible (useKeyboardNavigation, useFocusManagement, etc.)\n\n**Añade pruebas automatizadas**:\n- Tests con jest-axe para validación automática\n- Tests de navegación por teclado\n- Tests de anuncios de screen reader\n\n**Documenta el uso accesible**:\n- Comentarios JSDoc explicando patrones de accesibilidad\n- Ejemplos de uso correcto\n- Guías para mantener la accesibilidad\n\nResponde en español y enfócate en el componente específico que fue modificado."
+  }
+}

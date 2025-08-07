@@ -1,0 +1,16 @@
+{
+  "name": "Optimizar Rendimiento de Componente",
+  "description": "Analiza y optimiza el rendimiento de componentes React",
+  "trigger": {
+    "type": "manual",
+    "buttonText": "🚀 Optimizar Rendimiento"
+  },
+  "actions": [
+    {
+      "type": "agent_execution",
+      "prompt": "Voy a analizar y optimizar el rendimiento del componente seleccionado.\n\n**Análisis que realizaré:**\n1. **Re-renders innecesarios**:\n   - Identificar props que cambian frecuentemente\n   - Detectar funciones recreadas en cada render\n   - Analizar dependencias de useEffect\n\n2. **Oportunidades de memoización**:\n   - Componentes que se beneficiarían de React.memo\n   - Cálculos costosos para useMemo\n   - Callbacks para useCallback\n\n3. **Lazy loading**:\n   - Componentes pesados para React.lazy\n   - Code splitting apropiado\n   - Suspense boundaries\n\n4. **Optimizaciones de estado**:\n   - Selectors de Zustand optimizados\n   - Separación de estado por frecuencia de cambio\n   - Batching de actualizaciones\n\n**Implementaré:**\n- Memoización estratégica\n- Hooks optimizados\n- Lazy loading donde sea apropiado\n- Métricas de rendimiento\n- Pruebas de performance\n\n¿Cuál es el componente que quieres optimizar?",
+      "description": "Optimizar rendimiento de componente React"
+    }
+  ],
+  "enabled": true
+}
